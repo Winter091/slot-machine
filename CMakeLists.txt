@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.01)
+cmake_minimum_required(VERSION 3.13)
 
 project(slot-machine LANGUAGES CXX)
 
@@ -7,18 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
-add_executable(
-    slot-machine 
-
-    src/Slots/Slot.cpp
-    src/Slots/SlotRow.cpp
-    src/Slots/SlotRows.cpp
-    
-    src/Window/Implementations/SFML/SFMLWindow.cpp
-    
-    src/Application.cpp
-    src/main.cpp
-)
+add_executable(slot-machine)
+add_subdirectory(src)
 
 target_compile_options(slot-machine PRIVATE -Wall -Wextra)
 
