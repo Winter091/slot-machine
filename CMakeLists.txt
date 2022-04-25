@@ -9,6 +9,14 @@ find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
 add_executable(
     slot-machine 
+
+    src/Slots/Slot.cpp
+    src/Slots/SlotRow.cpp
+    src/Slots/SlotRows.cpp
+    
+    src/Window/Implementations/SFML/SFMLWindow.cpp
+    
+    src/Application.cpp
     src/main.cpp
 )
 
@@ -20,3 +28,5 @@ target_link_libraries(
     sfml-window 
     sfml-system
 )
+
+target_include_directories(slot-machine PRIVATE ${CMAKE_SOURCE_DIR})

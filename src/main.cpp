@@ -1,8 +1,12 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+#include <src/Window/Implementations/SFML/SFMLWindow.hpp>
+
 int main()
 {
+    SFMLWindow myWindow;
+
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
     const auto clearColor = sf::Color::Black;
 
