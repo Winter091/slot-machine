@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 3.01)
 
 project(slot-machine LANGUAGES CXX)
 
-SET(CMAKE_CXX_STANDARD 17)
-SET(CMAKE_CXX_STANDARD_REQUIRED YES)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+
+find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
 add_executable(
     slot-machine 
@@ -12,3 +14,9 @@ add_executable(
 
 target_compile_options(slot-machine PRIVATE -Wall -Wextra)
 
+target_link_libraries(
+    slot-machine 
+    sfml-graphics 
+    sfml-window 
+    sfml-system
+)

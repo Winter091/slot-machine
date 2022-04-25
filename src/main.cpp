@@ -1,6 +1,23 @@
-#include <iostream>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
-int main() {
-    std::cout << "Hello, world!\n";
+int main()
+{
+    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+    const auto clearColor = sf::Color::Black;
+
+    while (window.isOpen()) {
+        window.clear(clearColor);   
+
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+        }
+
+        window.display();
+    }
+
     return 0;
 }
