@@ -3,10 +3,10 @@
 #include <iostream>
 #include <cstdlib>
 
-SFMLButton::SFMLButton(const sf::Vector2f& pos, const sf::Vector2f& size, const sf::String& text)
+SFMLButton::SFMLButton(const sf::FloatRect& rect, const sf::String& text)
 {
-    m_rect = sf::RectangleShape(size);
-    m_rect.setPosition(pos);
+    m_rect = sf::RectangleShape(sf::Vector2f(rect.width, rect.height));
+    m_rect.setPosition(sf::Vector2f(rect.left, rect.top));
     m_rect.setFillColor(sf::Color::Black);
     m_rect.setOutlineThickness(0.0f);
 

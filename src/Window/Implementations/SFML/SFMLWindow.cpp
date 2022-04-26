@@ -11,12 +11,10 @@ SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
     m_sfmlWindow->setVerticalSyncEnabled(true);
 
     m_startButton = std::make_unique<SFMLButton>(
-        sf::Vector2f(m_width - 250, 50), sf::Vector2f(200, 50), "Start"
-    );
+        sf::FloatRect(m_width - 250, 50, 200, 50), "Start");
 
     m_endButton = std::make_unique<SFMLButton>(
-        sf::Vector2f(m_width - 250, 150), sf::Vector2f(200, 50), "End"
-    );
+        sf::FloatRect(m_width - 250, 150, 200, 50), "End");
 }
 
 SFMLWindow::~SFMLWindow()
