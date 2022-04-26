@@ -11,7 +11,7 @@ class SFMLWindow final : public IWindow
     virtual bool IsStartButtonPressed() override;
     virtual bool IsStopButtonPressed() override;
 
-    virtual void Render(const SlotRows& slotRows) override;
+    virtual void Render(const SlotMachine& slotMachine) override;
 };
 
 #endif

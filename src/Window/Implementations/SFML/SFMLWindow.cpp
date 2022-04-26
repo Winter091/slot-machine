@@ -20,7 +20,7 @@ bool SFMLWindow::IsStopButtonPressed()
     return false;
 }
 
-void SFMLWindow::Render(const SlotRows& slotRows)
+void SFMLWindow::Render(const SlotMachine& slotMachine)
 {
-    (void)slotRows;
+    (void)slotMachine;
 }

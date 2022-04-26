@@ -1,12 +1,12 @@
-#include "SlotRows.hpp"
+#include "SlotMachine.hpp"
 
 #include "SlotRow.hpp"
 
-SlotRows::SlotRows(std::vector<SlotRow> rows)
-    : m_rows(rows)
+SlotMachine::SlotMachine(std::vector<SlotRow> slotRows)
+    : m_slotRows(slotRows)
 {}
 
-SlotRows SlotRows::NewRandom(uint32_t numRows, uint32_t numInRow)
+SlotMachine SlotMachine::NewRandom(uint32_t numRows, uint32_t numInRow)
 {
     std::vector<SlotRow> rows;
     rows.reserve(numRows);
@@ -16,5 +16,5 @@ SlotRows SlotRows::NewRandom(uint32_t numRows, uint32_t numInRow)
         rows.push_back(s);
     }
 
-    return SlotRows(rows);
+    return SlotMachine(rows);
 }

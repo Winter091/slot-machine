@@ -1,7 +1,7 @@
 #ifndef _IWINDOW_H_
 #define _IWINDOW_H_
 
-#include <src/Slots/SlotRows.hpp>
+#include <src/Slots/SlotMachine.hpp>
 
 class IWindow
 {
@@ -12,7 +12,9 @@ public:
     virtual bool IsStartButtonPressed() = 0;
     virtual bool IsStopButtonPressed() = 0;
 
-    virtual void Render(const SlotRows& slotRows) = 0;
+    virtual void Render(const SlotMachine& SlotMachine) = 0;
+
+    virtual ~IWindow() {};
 };
 
 #endif

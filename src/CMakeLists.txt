@@ -5,4 +5,5 @@ target_sources(
 )
 
 add_subdirectory(Slots)
+add_subdirectory(States)
 add_subdirectory(Window)
