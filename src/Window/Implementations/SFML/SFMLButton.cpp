@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 
-SFMLButton::SFMLButton(sf::Vector2f pos, sf::Vector2f size, const char* text)
+SFMLButton::SFMLButton(const sf::Vector2f& pos, const sf::Vector2f& size, const sf::String& text)
 {
     m_rect = sf::RectangleShape(size);
     m_rect.setPosition(pos);
@@ -19,8 +19,11 @@ SFMLButton::SFMLButton(sf::Vector2f pos, sf::Vector2f size, const char* text)
     m_text.setFont(m_textFont);
     m_text.setString(text);
     m_text.setCharacterSize(44);
-    m_text.setFillColor(sf::Color::White);
-    m_text.setOrigin(-m_rect.getPosition());
+    m_text.setFillColor(sf::Color::Red);
+
+    const auto& global = m_text.getGlobalBounds();
+    m_text.setOrigin(sf::Vector2f(global.width / 2.0f, global.height / 1.3f));
+    m_text.setPosition(m_rect.getPosition() + m_rect.getSize() / 2.0f);
 }
 
 void SFMLButton::draw(sf::RenderTarget& target, sf::RenderStates states) const

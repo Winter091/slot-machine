@@ -6,7 +6,7 @@
 class SFMLButton : public sf::Drawable
 {
 public:
-    SFMLButton(sf::Vector2f pos, sf::Vector2f size, const char* text);
+    SFMLButton(const sf::Vector2f& pos, const sf::Vector2f& size, const sf::String& text);
     virtual ~SFMLButton() override {}
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
