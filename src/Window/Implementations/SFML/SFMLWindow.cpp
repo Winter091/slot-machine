@@ -30,12 +30,12 @@ bool SFMLWindow::IsClosed()
 
 bool SFMLWindow::IsStartButtonPressed()
 {
-    return false;
+    return sf::Keyboard::isKeyPressed(sf::Keyboard::F);
 }
 
 bool SFMLWindow::IsStopButtonPressed()
 {
-    return false;
+    return sf::Keyboard::isKeyPressed(sf::Keyboard::G);
 }
 
 void SFMLWindow::Render(const SlotMachine& slotMachine)

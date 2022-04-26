@@ -12,7 +12,7 @@ IState* IdleState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent
 
     switch (event.GetType()) {
         case EButtonType::Start:
-            return new StartSpinState(slotMachine->GetRows().size(), 500ms);
+            return new StartSpinState(slotMachine->GetRows().size(), 1s);
             break;
         default:
             break;

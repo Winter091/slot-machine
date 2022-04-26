@@ -17,7 +17,7 @@ IState* SpinState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent
 
     switch (event.GetType()) {
         case EButtonType::Stop:
-            return new StopSpinState(slotMachine->GetRows(), 500ms);
+            return new StopSpinState(slotMachine->GetRows(), 1s);
             break;
         default:
             break;
@@ -29,7 +29,7 @@ IState* SpinState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent
 IState* SpinState::Update(SlotMachine* slotMachine)
 {   
     if (std::chrono::high_resolution_clock::now() > m_maxEndTime) {
-        return new StopSpinState(slotMachine->GetRows(), 500ms);
+        return new StopSpinState(slotMachine->GetRows(), 1s);
     }
 
     return nullptr;

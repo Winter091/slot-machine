@@ -23,7 +23,7 @@ StartSpinState::StartSpinState(int numRows, std::chrono::milliseconds duration)
     m_startTime = std::chrono::high_resolution_clock::now();
     m_endTime = m_startTime + duration;
 
-    m_rowDesiredSpeeds = GetRandFloats(numRows, 0.1f, 0.2f);
+    m_rowDesiredSpeeds = GetRandFloats(numRows, 0.0002f, 0.0003f);
 }
 
 IState* StartSpinState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& event)
@@ -46,7 +46,7 @@ IState* StartSpinState::Update(SlotMachine* slotMachine)
         }
 
         using namespace std::chrono_literals;
-        return new SpinState(15000ms);
+        return new SpinState(15s);
     }
 
     auto& rows = slotMachine->GetRows();
