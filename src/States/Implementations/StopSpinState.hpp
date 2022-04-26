@@ -14,6 +14,8 @@ public:
     virtual IState* HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& input) override;
     virtual IState* Update(SlotMachine* slotMachine) override;
 
+    virtual const char* GetDebugName() const override { return "StopSpin"; }
+
     virtual ~StopSpinState() override {};
 
 private:
