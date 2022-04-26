@@ -2,6 +2,8 @@
 
 SlotRow::SlotRow(const std::vector<Slot>& slots)
     : m_slots(slots)
+    , m_position(0.0f)
+    , m_speed(0.0f)
 {}
 
 SlotRow SlotRow::NewRandom(uint32_t size)

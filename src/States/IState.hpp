@@ -8,8 +8,8 @@ class SlotMachine;
 class IState
 {
 public:
-    virtual void HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& event) = 0;
-    virtual void Update(SlotMachine* slotMachine) = 0;
+    virtual IState* HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& event) = 0;
+    virtual IState* Update(SlotMachine* slotMachine) = 0;
 
     virtual ~IState() {};
 };

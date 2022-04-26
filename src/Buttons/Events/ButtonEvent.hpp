@@ -10,8 +10,8 @@ public:
     ButtonEvent() {};
     ButtonEvent(EButtonType type, EButtonAction action);
 
-    EButtonType GetType();
-    EButtonAction GetAction();
+    EButtonType GetType() const;
+    EButtonAction GetAction() const;
 
 private:
     EButtonType m_type;

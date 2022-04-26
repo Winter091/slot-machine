@@ -7,10 +7,10 @@
 class IdleState : public IState
 {
 public:
-    virtual void HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& input) override;
-    virtual void Update(SlotMachine* slotMachine) override;
+    virtual IState* HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& input) override;
+    virtual IState* Update(SlotMachine* slotMachine) override;
 
-    virtual ~IdleState() override;
+    virtual ~IdleState() override {};
 };
 
 #endif

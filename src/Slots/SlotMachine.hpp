@@ -17,7 +17,11 @@ public:
     void HandleButtonEvent(const ButtonEvent& event);
     void Update();
 
+    std::vector<SlotRow>& GetRows() { return m_slotRows; }
+    
 private:
+    void SetState(IState* newState);
+
     std::vector<SlotRow> m_slotRows;
     IState* m_state;
 };
