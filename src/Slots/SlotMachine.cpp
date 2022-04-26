@@ -23,6 +23,12 @@ SlotMachine* SlotMachine::NewRandom(uint32_t numRows, uint32_t numInRow)
     return new SlotMachine(rows);
 }
 
+void SlotMachine::HandleButtonEvent(const ButtonEvent& event)
+{
+    assert(m_state && "State pointer is nullptr");
+    m_state->HandleButtonEvent(this, event);
+}
+
 void SlotMachine::Update()
 {
     assert(m_state && "State pointer is nullptr");

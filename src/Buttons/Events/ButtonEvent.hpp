@@ -7,6 +7,7 @@
 class ButtonEvent
 {
 public:
+    ButtonEvent() {};
     ButtonEvent(EButtonType type, EButtonAction action);
 
     EButtonType GetType();

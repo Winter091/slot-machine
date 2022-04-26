@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-void IdleState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& input)
+void IdleState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& event)
 {
     (void)slotMachine;
-    (void)input;
+    (void)event;
 }
 
 void IdleState::Update(SlotMachine* slotMachine)
