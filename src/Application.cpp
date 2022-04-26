@@ -4,21 +4,17 @@
 
 Application::Application()
     : m_window(std::make_unique<SFMLWindow>(800, 600, "My window"))
-{
-
-}
+    , m_slotMachine(SlotMachine::NewRandom(5, 10))
+{}
 
 Application::~Application()
-{
-
-}
+{}
 
 void Application::MainLoop()
 {
-    SlotMachine machine = SlotMachine::NewRandom(5, 5);
-
     while (!m_window->IsClosed()) {
         m_window->DispatchEvents();
-        m_window->Render(machine);
+        m_slotMachine->Update();
+        m_window->Render(*m_slotMachine.get());
     }
 }

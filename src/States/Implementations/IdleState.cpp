@@ -1,6 +1,14 @@
 #include "IdleState.hpp"
 
-void IdleState::Update(SlotMachine& slotMachine)
+#include <iostream>
+
+void IdleState::HandleButtonInput(SlotMachine* slotMachine, const ButtonInput& input)
+{
+    (void)slotMachine;
+    (void)input;
+}
+
+void IdleState::Update(SlotMachine* slotMachine)
 {
     (void)slotMachine;
 }

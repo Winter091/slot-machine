@@ -15,6 +15,7 @@ public:
     
 private:
     std::unique_ptr<IWindow> m_window;
+    std::unique_ptr<SlotMachine> m_slotMachine;
 };
 
 #endif

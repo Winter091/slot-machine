@@ -1,12 +1,16 @@
 #include "SlotMachine.hpp"
 
 #include "SlotRow.hpp"
+#include <src/States/Implementations/IdleState.hpp>
+
+#include <cassert>
 
 SlotMachine::SlotMachine(std::vector<SlotRow> slotRows)
     : m_slotRows(slotRows)
+    , m_state(new IdleState())
 {}
 
-SlotMachine SlotMachine::NewRandom(uint32_t numRows, uint32_t numInRow)
+SlotMachine* SlotMachine::NewRandom(uint32_t numRows, uint32_t numInRow)
 {
     std::vector<SlotRow> rows;
     rows.reserve(numRows);
@@ -16,5 +20,11 @@ SlotMachine SlotMachine::NewRandom(uint32_t numRows, uint32_t numInRow)
         rows.push_back(s);
     }
 
-    return SlotMachine(rows);
+    return new SlotMachine(rows);
+}
+
+void SlotMachine::Update()
+{
+    assert(m_state && "State pointer is nullptr");
+    m_state->Update(this);
 }
