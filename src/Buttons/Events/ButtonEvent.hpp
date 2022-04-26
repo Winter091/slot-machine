@@ -1,13 +1,13 @@
-#ifndef _BUTTONINPUT_H_
-#define _BUTTONINPUT_H_
+#ifndef _BUTTONEVENT_H_
+#define _BUTTONEVENT_H_
 
 #include "EButtonType.hpp"
 #include "EButtonAction.hpp"
 
-class ButtonInput
+class ButtonEvent
 {
 public:
-    ButtonInput(EButtonType type, EButtonAction action);
+    ButtonEvent(EButtonType type, EButtonAction action);
 
     EButtonType GetType();
     EButtonAction GetAction();

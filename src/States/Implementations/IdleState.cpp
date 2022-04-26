@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-void IdleState::HandleButtonInput(SlotMachine* slotMachine, const ButtonInput& input)
+void IdleState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& input)
 {
     (void)slotMachine;
     (void)input;
