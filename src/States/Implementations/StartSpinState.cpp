@@ -42,7 +42,7 @@ IState* StartSpinState::Update(SlotMachine* slotMachine)
     if (part >= 1.0f) {
         auto& rows = slotMachine->GetRows();
         for (std::size_t i = 0; i < m_rowDesiredSpeeds.size(); i++) {
-            rows[i].GetSpeed() = m_rowDesiredSpeeds[i];
+            rows[i].SetSpeed(m_rowDesiredSpeeds[i]);
         }
 
         using namespace std::chrono_literals;
@@ -51,7 +51,7 @@ IState* StartSpinState::Update(SlotMachine* slotMachine)
 
     auto& rows = slotMachine->GetRows();
     for (std::size_t i = 0; i < m_rowDesiredSpeeds.size(); i++) {
-        rows[i].GetSpeed() = m_rowDesiredSpeeds[i] * part;
+        rows[i].SetSpeed(m_rowDesiredSpeeds[i] * part);
     }
     return nullptr;
 }

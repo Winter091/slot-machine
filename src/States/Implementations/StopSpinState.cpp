@@ -30,7 +30,7 @@ IState* StopSpinState::Update(SlotMachine* slotMachine)
 
     if (part >= 1.0f) {
         for (auto& row : slotMachine->GetRows()) {
-            row.GetSpeed() = 0.0f;
+            row.SetSpeed(0.0f);
         }
 
         return new IdleState();
@@ -38,7 +38,7 @@ IState* StopSpinState::Update(SlotMachine* slotMachine)
 
     auto& rows = slotMachine->GetRows();
     for (std::size_t i = 0; i < rows.size(); i++) {
-        rows[i].GetSpeed() = m_startRowSpeeds[i] * (1.0f - part);
+        rows[i].SetSpeed(m_startRowSpeeds[i] * (1.0f - part));
     }
     return nullptr;
 }

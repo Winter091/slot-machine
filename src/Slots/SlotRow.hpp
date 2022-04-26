@@ -12,10 +12,10 @@ public:
     static SlotRow NewRandom(uint32_t size);
 
     float GetPosition() const { return m_position; }
-    float& GetSpeed() { return m_speed; }
-    float GetSpeed() const { return m_speed; }
-    
     void Move(float posDelta);   
+    
+    void SetSpeed(float newSpeed) { m_speed = newSpeed; }
+    float GetSpeed() const { return m_speed; }
 
 private:
     std::vector<Slot> m_slots;
