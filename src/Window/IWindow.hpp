@@ -15,6 +15,8 @@ public:
     virtual void Render(const SlotMachine& SlotMachine) = 0;
 
     virtual ~IWindow() {};
+
+private:
 };
 
 #endif
