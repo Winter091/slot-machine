@@ -15,7 +15,7 @@ public:
     static SlotMachine* NewRandom(uint32_t numRows, uint32_t numInRow);
 
     void HandleButtonEvent(const ButtonEvent& event);
-    void Update();
+    void Update(float dt);
 
     std::vector<SlotRow>& GetRows() { return m_slotRows; }
     

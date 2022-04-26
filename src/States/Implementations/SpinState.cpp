@@ -27,7 +27,7 @@ IState* SpinState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent
 }
 
 IState* SpinState::Update(SlotMachine* slotMachine)
-{
+{   
     if (std::chrono::high_resolution_clock::now() > m_maxEndTime) {
         return new StopSpinState(slotMachine->GetRows(), 500ms);
     }

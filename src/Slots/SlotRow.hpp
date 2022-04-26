@@ -15,8 +15,7 @@ public:
     float& GetSpeed() { return m_speed; }
     float GetSpeed() const { return m_speed; }
     
-    void Move(float delta) { m_position += delta; }
-    
+    void Move(float posDelta);   
 
 private:
     std::vector<Slot> m_slots;

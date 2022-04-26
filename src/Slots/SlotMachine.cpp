@@ -4,6 +4,7 @@
 #include <src/States/Implementations/IdleState.hpp>
 
 #include <cassert>
+#include <iostream>
 
 SlotMachine::SlotMachine(std::vector<SlotRow> slotRows)
     : m_slotRows(slotRows)
@@ -33,13 +34,19 @@ void SlotMachine::HandleButtonEvent(const ButtonEvent& event)
     }
 }
 
-void SlotMachine::Update()
+void SlotMachine::Update(float dt)
 {
     assert(m_state && "State pointer is nullptr");
 
     IState* newState = m_state->Update(this);
     if (newState) {
         SetState(newState);
+    }
+
+    std::cout << m_state->GetDebugName() << '\n';
+
+    for (auto& row : m_slotRows) {
+        row.Move(row.GetSpeed() * dt);
     }
 }
 

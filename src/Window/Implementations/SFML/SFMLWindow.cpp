@@ -6,6 +6,7 @@ SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
 {
     sf::VideoMode mode(width, height);
     m_sfmlWindow = std::make_unique<sf::RenderWindow>(mode, title);
+    m_sfmlWindow->setVerticalSyncEnabled(true);
 }
 
 SFMLWindow::~SFMLWindow()

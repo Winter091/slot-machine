@@ -1,5 +1,7 @@
 #include "SlotRow.hpp"
 
+#include <cmath>
+
 SlotRow::SlotRow(const std::vector<Slot>& slots)
     : m_slots(slots)
     , m_position(0.0f)
@@ -17,4 +19,9 @@ SlotRow SlotRow::NewRandom(uint32_t size)
     }
 
     return SlotRow(slots);
+}
+
+void SlotRow::Move(float posDelta)
+{
+    m_position = std::fmod(m_position + posDelta, 1.0f);
 }
