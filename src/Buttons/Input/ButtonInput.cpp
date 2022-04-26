@@ -1,5 +1,7 @@
 #include "ButtonInput.hpp"
 
+#include <iostream>
+
 ButtonInput::ButtonInput()
 {}
 

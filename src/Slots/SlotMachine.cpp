@@ -43,13 +43,9 @@ void SlotMachine::Update(float dt)
         SetState(newState);
     }
 
-    // std::cout << m_state->GetDebugName() << '\n';
-
     for (auto& row : m_slotRows) {
         row.Move(row.GetSpeed() * dt);
     }
-
-    std::cout << m_slotRows[0].GetPosition() << '\n';
 }
 
 void SlotMachine::SetState(IState* newState)

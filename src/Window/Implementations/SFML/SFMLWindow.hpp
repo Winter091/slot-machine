@@ -2,6 +2,7 @@
 #define _SFMLWINDOW_H_
 
 #include <src/Window/IWindow.hpp>
+#include "SFMLButton.hpp"
 #include <SFML/Graphics.hpp>
 
 #include <cstddef>
@@ -25,6 +26,9 @@ private:
     uint32_t m_width;
     uint32_t m_height;
     std::unique_ptr<sf::RenderWindow> m_sfmlWindow;
+
+    std::unique_ptr<SFMLButton> m_startButton;
+    std::unique_ptr<SFMLButton> m_endButton;
 };
 
 #endif
