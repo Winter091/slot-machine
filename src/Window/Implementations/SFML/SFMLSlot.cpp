@@ -1,30 +1,16 @@
 #include "SFMLSlot.hpp"
 
-SFMLSlot::SFMLSlot(const sf::Vector2f& size)
+SFMLSlot::SFMLSlot(const sf::Vector2f& size, const sf::Texture& texture)
 {
-    m_rect.setSize(size);
-    m_rect.setOutlineThickness(5.0f);
-    m_rect.setOutlineColor(sf::Color::Yellow);
+    m_sprite.setTexture(texture);
+    m_sprite.setScale(sf::Vector2f(
+        size.x / texture.getSize().x,
+        size.y / texture.getSize().y
+    ));
 }
 
-sf::Color GetColor(ESlotType type)
+void SFMLSlot::Draw(sf::RenderTarget& target, const sf::Vector2f& pos)
 {
-    switch (type)
-    {
-        case ESlotType::ONE:
-            return sf::Color::Red;
-        case ESlotType::TWO:
-            return sf::Color::Green;
-        case ESlotType::THREE:
-            return sf::Color::Blue;
-        default:
-            return sf::Color::Magenta;
-    }
-}
-
-void SFMLSlot::Draw(sf::RenderTarget& target, const sf::Vector2f& pos, const sf::Color& color)
-{
-    m_rect.setPosition(pos);
-    m_rect.setFillColor(color);
-    target.draw(m_rect);
+    m_sprite.setPosition(pos);
+    target.draw(m_sprite);
 }

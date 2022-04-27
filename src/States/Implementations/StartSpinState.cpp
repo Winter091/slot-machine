@@ -25,8 +25,8 @@ StartSpinState::StartSpinState(int numRows, std::chrono::milliseconds duration)
     m_startTime = std::chrono::high_resolution_clock::now();
     m_endTime = m_startTime + duration;
 
-    const float minRowSpeed = 0.0005f;
-    const float maxRowSpeed = 0.0010f;
+    const float minRowSpeed = 0.0002f;
+    const float maxRowSpeed = 0.0005f;
     m_rowDesiredSpeeds = GetRandFloats(numRows, minRowSpeed, maxRowSpeed);
 }
 

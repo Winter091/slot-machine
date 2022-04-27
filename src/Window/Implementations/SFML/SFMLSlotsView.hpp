@@ -15,8 +15,12 @@ public:
 
 private:
     sf::RectangleShape m_boundingRect;
+    sf::RectangleShape m_centerRowRect;
     sf::RenderTexture m_texture;
     sf::Sprite m_sprite;
+    std::unordered_map<ESlotType, sf::Texture> m_slotTextures;
+
+    void LoadTextures();
 };
 
 #endif

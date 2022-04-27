@@ -7,12 +7,12 @@
 class SFMLSlot
 {
 public:
-    SFMLSlot(const sf::Vector2f& size);
+    SFMLSlot(const sf::Vector2f& size, const sf::Texture& texture);
 
-    void Draw(sf::RenderTarget& target, const sf::Vector2f& pos, const sf::Color& color);
+    void Draw(sf::RenderTarget& target, const sf::Vector2f& pos);
 
 private:
-    sf::RectangleShape m_rect;
+    sf::Sprite m_sprite;
 };
 
 sf::Color GetColor(ESlotType type);

@@ -16,13 +16,7 @@ SlotMachine* SlotMachine::NewRandom(uint32_t numRows, uint32_t numInRow)
 {
     std::vector<SlotRow> rows;
     rows.reserve(numRows);
-
-    std::unordered_map<ESlotType, int> types = {
-        { ESlotType::ONE, 1 },
-        { ESlotType::TWO, 2 },
-        { ESlotType::THREE, 3 },
-    };
-
+    
     for (uint32_t i = 0; i < numRows; i++) {
         SlotRow s = SlotRow::NewRandom(numInRow);
         rows.push_back(s);

@@ -5,6 +5,39 @@
 #include "SFMLButton.hpp"
 #include <src/Utils.hpp>
 
+void SFMLSlotsView::LoadTextures()
+{
+    sf::Texture texture;
+    texture.setSmooth(true);
+
+    texture.loadFromFile("Resources/SlotTextures/apple.png");
+    m_slotTextures[ESlotType::APPLE] = texture;
+
+    texture.loadFromFile("Resources/SlotTextures/glemon.png");
+    m_slotTextures[ESlotType::GLEMON] = texture;
+
+    texture.loadFromFile("Resources/SlotTextures/heart.png");
+    m_slotTextures[ESlotType::HEART] = texture;
+
+    texture.loadFromFile("Resources/SlotTextures/redberry.png");
+    m_slotTextures[ESlotType::RED_BERRY] = texture;
+
+    texture.loadFromFile("Resources/SlotTextures/bar.png");
+    m_slotTextures[ESlotType::BAR] = texture;
+
+    texture.loadFromFile("Resources/SlotTextures/bell.png");
+    m_slotTextures[ESlotType::BELL] = texture;
+
+    texture.loadFromFile("Resources/SlotTextures/seven.png");
+    m_slotTextures[ESlotType::SEVEN] = texture;
+
+    texture.loadFromFile("Resources/SlotTextures/vinegar.png");
+    m_slotTextures[ESlotType::VINEGAR] = texture;
+
+    texture.loadFromFile("Resources/SlotTextures/watermelon.png");
+    m_slotTextures[ESlotType::WATERMELON] = texture;
+}
+
 SFMLSlotsView::SFMLSlotsView(const sf::FloatRect& boundingRect)
 {
     m_boundingRect.setSize(sf::Vector2f(boundingRect.width, boundingRect.height));
@@ -15,10 +48,16 @@ SFMLSlotsView::SFMLSlotsView(const sf::FloatRect& boundingRect)
     m_boundingRect.setOutlineColor(sf::Color::Black);
     m_boundingRect.setOutlineThickness(2.0f);
 
+    m_centerRowRect.setFillColor(transparentColor);
+    m_centerRowRect.setOutlineColor(sf::Color::Red);
+    m_centerRowRect.setOutlineThickness(-5.0f);
+
     m_texture.create(boundingRect.width, boundingRect.height);
 
     m_sprite.setPosition(boundingRect.left, boundingRect.top);
     m_sprite.setTexture(m_texture.getTexture());
+
+    LoadTextures();
 }
 
 void SFMLSlotsView::Draw(sf::RenderTarget& target, const std::vector<SlotRow>& slotRows)
@@ -55,10 +94,10 @@ void SFMLSlotsView::Draw(sf::RenderTarget& target, const std::vector<SlotRow>& s
         float topPosY = currPosY;
 
         for (int j = 0; currPosY < rectPos.y + rectSize.y; j++) {
-            SFMLSlot slot(sf::Vector2f(slotDrawWidth, slotDrawWidth));
+            sf::Texture& texture = m_slotTextures.at(slots[currIndex].GetType());
+            SFMLSlot slot(sf::Vector2f(slotDrawWidth, slotDrawWidth), texture);
             sf::Vector2f pos(currPosX - rectPos.x, currPosY - rectPos.y);
-            sf::Color color = GetColor(slots[currIndex].GetType());
-            slot.Draw(m_texture, pos, color);
+            slot.Draw(m_texture, pos);
 
             currPosY = topPosY + (j + 1) * slotDrawWidth;
             currIndex = WrapInt(currIndex - 1, 0, slots.size() - 1);
@@ -67,6 +106,13 @@ void SFMLSlotsView::Draw(sf::RenderTarget& target, const std::vector<SlotRow>& s
 
     m_texture.display();
     target.draw(m_sprite);
+
+    m_centerRowRect.setSize({rectSize.x, slotDrawWidth});
+    m_centerRowRect.setOrigin({rectSize.x / 2.0f, slotDrawWidth / 2.0f});
+    m_centerRowRect.setPosition({
+        rectPos.x + rectSize.x / 2.0f, 
+        rectPos.y + rectSize.y / 2.0f});
+    target.draw(m_centerRowRect);
     
     target.draw(m_boundingRect);
 }

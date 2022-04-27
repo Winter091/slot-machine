@@ -6,7 +6,7 @@
 class Slot
 {
 public:
-    Slot(ESlotType type = ESlotType::ONE);
+    Slot(ESlotType type);
     static Slot NewRandom();
 
     ESlotType GetType() const { return m_type; }

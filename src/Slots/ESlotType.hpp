@@ -5,9 +5,15 @@
 
 enum class ESlotType : uint32_t
 {
-    ONE = 0,
-    TWO,
-    THREE,
+    APPLE = 0,
+    GLEMON,
+    HEART,
+    RED_BERRY,
+    BAR,
+    BELL,
+    SEVEN,
+    VINEGAR,
+    WATERMELON,
     COUNT,
 };
 
