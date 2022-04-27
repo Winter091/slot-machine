@@ -11,10 +11,12 @@ class SFMLSlotsView
 public:
     SFMLSlotsView(const sf::FloatRect& boundingRect);
 
-    void Draw(sf::RenderTarget& target, const std::vector<SlotRow>& slotRows) const;
+    void Draw(sf::RenderTarget& target, const std::vector<SlotRow>& slotRows);
 
 private:
     sf::RectangleShape m_boundingRect;
+    sf::RenderTexture m_texture;
+    sf::Sprite m_sprite;
 };
 
 #endif
