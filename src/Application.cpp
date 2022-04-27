@@ -8,7 +8,7 @@
 
 Application::Application()
     : m_window(std::make_unique<SFMLWindow>(800, 600, "My window"))
-    , m_slotMachine(SlotMachine::NewRandom(5, 10))
+    , m_slotMachine(SlotMachine::NewRandom(4, 10))
 {}
 
 Application::~Application()
@@ -29,6 +29,15 @@ void Application::MainLoop()
         ButtonEvent event;
         while (ButtonInput::GetNextEvent(event)) {
             m_slotMachine->HandleButtonEvent(event);
+            // if (event.GetType() == EButtonType::Start) {
+            //     for (auto& row : m_slotMachine->GetRows()) {
+            //         row.Move(0.01f);
+            //     }
+            // } else if (event.GetType() == EButtonType::Stop) {
+            //     for (auto& row : m_slotMachine->GetRows()) {
+            //         row.Move(-0.01f);
+            //     }
+            // }
         }
 
         m_slotMachine->Update(dt);

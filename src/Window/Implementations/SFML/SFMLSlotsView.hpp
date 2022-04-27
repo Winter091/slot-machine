@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <src/Slots/SlotRow.hpp>
 #include <vector>
+#include <cstddef>
 
 class SFMLSlotsView
 {

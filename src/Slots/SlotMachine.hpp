@@ -20,7 +20,7 @@ public:
     std::vector<SlotRow>& GetRows() { return m_slotRows; }
     const std::vector<SlotRow>& GetRows() const { return m_slotRows; }
     
-private:
+public:
     void SetState(IState* newState);
 
     std::vector<SlotRow> m_slotRows;
