@@ -3,6 +3,7 @@
 #include "SFMLSlot.hpp"
 #include <cmath>
 #include "SFMLButton.hpp"
+#include <src/Utils.hpp>
 
 SFMLSlotsView::SFMLSlotsView(const sf::FloatRect& boundingRect)
 {
@@ -21,52 +22,37 @@ void SFMLSlotsView::Draw(sf::RenderTarget& target, const std::vector<SlotRow>& s
     const auto& rectPos = m_boundingRect.getPosition();
 
     float slotDrawWidth = rectSize.x / slotRows.size();
-    // int slotsInRowToRender = static_cast<int>(rectSize.y / slotDrawWidth + 1);
 
     for (std::size_t i = 0; i < slotRows.size(); i++) {
         const auto& slotRow = slotRows[i];
         const auto& slots = slotRow.GetSlots();
         
+        float currPosX = rectPos.x + i * slotDrawWidth;
         float slotSize = 1.0f / slots.size();
 
-        float currPosX = rectPos.x + i * slotDrawWidth;
-
         float toTopLen = slotDrawWidth * (slotRow.DistanceToSlotTop(slotRow.GetPosition()) / slotSize);
-        int centerIndex = slotRow.IndexFromPosition(slotRow.GetPosition());
+        float centerPosY = rectPos.y + rectSize.y / 2.0f - toTopLen;
+        float currPosY = centerPosY;
 
-        float centerY = rectPos.y + rectSize.y / 2.0f - toTopLen;
-        float currY = centerY;
+        int centerIndex = slotRow.IndexFromPosition(slotRow.GetPosition());
         int currIndex = centerIndex;
-        while (currY > rectPos.y) {
-            currY -= slotDrawWidth;
-            currIndex = (currIndex + 1) % slots.size();
+        
+        // Find top tile y pos and index
+        while (currPosY > rectPos.y) {
+            currPosY -= slotDrawWidth;
+            currIndex = WrapInt(currIndex + 1, 0, slots.size() - 1);
         }
 
-        float topY = currY;
+        float topPosY = currPosY;
 
-        for (int j = 0; currY < rectPos.y + rectSize.y; j++) {
-            SFMLSlot slot(
-                sf::Vector2f(slotDrawWidth, slotDrawWidth)
-            );
-
-            sf::Vector2f pos(currPosX, currY);
+        for (int j = 0; currPosY < rectPos.y + rectSize.y; j++) {
+            SFMLSlot slot(sf::Vector2f(slotDrawWidth, slotDrawWidth));
+            sf::Vector2f pos(currPosX, currPosY);
             sf::Color color = GetColor(slots[currIndex].GetType());
+            slot.Draw(target, pos, color);
 
-            SFMLButton button(
-                sf::FloatRect(pos, sf::Vector2f(slotDrawWidth, slotDrawWidth)),
-                std::to_string(currIndex)
-            );
-            target.draw(button);
-
-            // slot.Draw(target, pos, color);
-
-            currY = topY + (j + 1) * slotDrawWidth;
-
-            currIndex--;
-            if (currIndex < 0) {
-                currIndex += slots.size();
-            }
-            currIndex %= slots.size();
+            currPosY = topPosY + (j + 1) * slotDrawWidth;
+            currIndex = WrapInt(currIndex - 1, 0, slots.size() - 1);
         }
     }
 
