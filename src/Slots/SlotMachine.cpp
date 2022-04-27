@@ -45,13 +45,9 @@ void SlotMachine::Update(float dt)
 {
     assert(m_state && "State pointer is nullptr");
 
-    IState* newState = m_state->Update(this);
+    IState* newState = m_state->Update(this, dt);
     if (newState) {
         SetState(newState);
-    }
-
-    for (auto& row : m_slotRows) {
-        row.Move(row.GetSpeed() * dt);
     }
 }
 

@@ -12,7 +12,7 @@ public:
     SpinState(std::chrono::milliseconds maxDuration);
 
     virtual IState* HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& input) override;
-    virtual IState* Update(SlotMachine* slotMachine) override;
+    virtual IState* Update(SlotMachine* slotMachine, float dt) override;
 
     virtual const char* GetDebugName() const override { return "Spin"; }
 

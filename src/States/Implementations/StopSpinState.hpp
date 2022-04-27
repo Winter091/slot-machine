@@ -9,10 +9,10 @@
 class StopSpinState : public IState
 {
 public:
-    StopSpinState(const std::vector<SlotRow>& rows, std::chrono::milliseconds duration);
+    StopSpinState(const std::vector<SlotRow>& rows, std::chrono::milliseconds minDuration);
 
     virtual IState* HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& input) override;
-    virtual IState* Update(SlotMachine* slotMachine) override;
+    virtual IState* Update(SlotMachine* slotMachine, float dt) override;
 
     virtual const char* GetDebugName() const override { return "StopSpin"; }
 
@@ -20,8 +20,11 @@ public:
 
 private:
     std::chrono::high_resolution_clock::time_point m_startTime;
-    std::chrono::high_resolution_clock::time_point m_endTime;
+
     std::vector<float> m_startRowSpeeds;
+    std::vector<std::chrono::milliseconds> m_stopTimes;
+    std::vector<bool> m_alreadyStopped;
+    int m_numRunning;
 };
 
 #endif

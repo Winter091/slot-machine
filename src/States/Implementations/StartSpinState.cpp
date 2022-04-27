@@ -4,6 +4,8 @@
 
 #include <random>
 
+using namespace std::chrono_literals;
+
 static std::vector<float> GetRandFloats(std::size_t vecSize, float low, float high)
 {
     static std::random_device rd;
@@ -23,7 +25,9 @@ StartSpinState::StartSpinState(int numRows, std::chrono::milliseconds duration)
     m_startTime = std::chrono::high_resolution_clock::now();
     m_endTime = m_startTime + duration;
 
-    m_rowDesiredSpeeds = GetRandFloats(numRows, 0.0002f, 0.0003f);
+    const float minRowSpeed = 0.0005f;
+    const float maxRowSpeed = 0.0010f;
+    m_rowDesiredSpeeds = GetRandFloats(numRows, minRowSpeed, maxRowSpeed);
 }
 
 IState* StartSpinState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& event)
@@ -33,25 +37,29 @@ IState* StartSpinState::HandleButtonEvent(SlotMachine* slotMachine, const Button
     return nullptr;
 }
 
-IState* StartSpinState::Update(SlotMachine* slotMachine)
+IState* StartSpinState::Update(SlotMachine* slotMachine, float dt)
 {
     auto allDuration = m_endTime - m_startTime;
     auto currDuration = std::chrono::high_resolution_clock::now() - m_startTime;
     float part = (float)currDuration.count() / allDuration.count();
 
+    IState* ret = nullptr;
+    auto& rows = slotMachine->GetRows();
+
     if (part >= 1.0f) {
-        auto& rows = slotMachine->GetRows();
         for (std::size_t i = 0; i < m_rowDesiredSpeeds.size(); i++) {
             rows[i].SetSpeed(m_rowDesiredSpeeds[i]);
         }
-
-        using namespace std::chrono_literals;
-        return new SpinState(15s);
+        ret = new SpinState(15s);
+    } else {
+        for (std::size_t i = 0; i < m_rowDesiredSpeeds.size(); i++) {
+            rows[i].SetSpeed(m_rowDesiredSpeeds[i] * part);
+        }
     }
 
-    auto& rows = slotMachine->GetRows();
-    for (std::size_t i = 0; i < m_rowDesiredSpeeds.size(); i++) {
-        rows[i].SetSpeed(m_rowDesiredSpeeds[i] * part);
+    for (auto& row : slotMachine->GetRows()) {
+        row.Move(row.GetSpeed() * dt);
     }
-    return nullptr;
+
+    return ret;
 }
