@@ -40,15 +40,6 @@ bool SFMLWindow::IsClosed()
 
 bool SFMLWindow::IsStartButtonPressed()
 {
-    /*
-    static bool alreadyPressed = false;
-    
-    bool pressed = sf::Keyboard::isKeyPressed(sf::Keyboard::F);
-    bool res = !alreadyPressed && pressed;
-    alreadyPressed = pressed;
-    return res;
-    */
-
     sf::Vector2i mousePos = sf::Mouse::getPosition(*m_sfmlWindow);
     bool hit = m_startButton->TestHit(mousePos);
 
@@ -57,15 +48,6 @@ bool SFMLWindow::IsStartButtonPressed()
 
 bool SFMLWindow::IsStopButtonPressed()
 {
-    /*
-    static bool alreadyPressed = false;
-    
-    bool pressed = sf::Keyboard::isKeyPressed(sf::Keyboard::G);
-    bool res = !alreadyPressed && pressed;
-    alreadyPressed = pressed;
-    return res;
-    */
-    
     sf::Vector2i mousePos = sf::Mouse::getPosition(*m_sfmlWindow);
     bool hit = m_endButton->TestHit(mousePos);
 

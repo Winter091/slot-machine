@@ -29,15 +29,6 @@ void Application::MainLoop()
         ButtonEvent event;
         while (ButtonInput::GetNextEvent(event)) {
             m_slotMachine->HandleButtonEvent(event);
-            // if (event.GetType() == EButtonType::Start) {
-            //     for (auto& row : m_slotMachine->GetRows()) {
-            //         row.Move(0.01f);
-            //     }
-            // } else if (event.GetType() == EButtonType::Stop) {
-            //     for (auto& row : m_slotMachine->GetRows()) {
-            //         row.Move(-0.01f);
-            //     }
-            // }
         }
 
         m_slotMachine->Update(dt);

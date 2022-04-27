@@ -14,8 +14,7 @@ SlotRow SlotRow::NewRandom(uint32_t size)
     slots.reserve(size);
 
     for (uint32_t i = 0; i < size; i++) {
-        // Slot s = Slot::NewRandom();
-        Slot s((ESlotType)(i % 3));
+        Slot s = Slot::NewRandom();
         slots.push_back(s);
     }
 

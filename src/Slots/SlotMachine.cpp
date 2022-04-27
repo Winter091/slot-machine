@@ -26,10 +26,6 @@ SlotMachine* SlotMachine::NewRandom(uint32_t numRows, uint32_t numInRow)
     for (uint32_t i = 0; i < numRows; i++) {
         SlotRow s = SlotRow::NewRandom(numInRow);
         rows.push_back(s);
-        // for (const auto& elem : s.GetSlots()) {
-        //     std::cout << types[elem.GetType()] << ' ';
-        // }
-        // std::cout << '\n';
     }
 
     return new SlotMachine(rows);
