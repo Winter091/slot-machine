@@ -8,7 +8,7 @@
 
 Application::Application()
     : m_window(std::make_unique<SFMLWindow>(800, 600, "My window"))
-    , m_slotMachine(SlotMachine::NewRandom(5, 10))
+    , m_slotMachine(SlotMachine::NewRandom(4, 10))
 {}
 
 Application::~Application()

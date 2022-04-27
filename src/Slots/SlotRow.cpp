@@ -24,4 +24,24 @@ SlotRow SlotRow::NewRandom(uint32_t size)
 void SlotRow::Move(float posDelta)
 {
     m_position = std::fmod(m_position + posDelta, 1.0f);
+    if (m_position < 0.0f) {
+        m_position += 1.0f;
+    }
+    if (m_position >= 1.0f) {
+        m_position -= 1.0f;
+    }
+}
+
+int SlotRow::IndexFromPosition(float pos) const
+{
+    float width = 1.0f / m_slots.size();
+    pos = std::fmod(pos + width / 2.0f, 1.0f);
+
+    return static_cast<int>(pos / width);
+}
+
+float SlotRow::DistanceToSlotTop(float pos) const
+{
+    float width = 1.0f / m_slots.size();
+    return width - std::fmod(pos + width / 2.0f, width);
 }

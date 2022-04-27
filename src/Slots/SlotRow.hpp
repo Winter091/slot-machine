@@ -17,6 +17,11 @@ public:
     void SetSpeed(float newSpeed) { m_speed = newSpeed; }
     float GetSpeed() const { return m_speed; }
 
+    const std::vector<Slot>& GetSlots() const { return m_slots; }
+
+    int IndexFromPosition(float pos) const;
+    float DistanceToSlotTop(float pos) const;
+
 private:
     std::vector<Slot> m_slots;
     float m_position;
