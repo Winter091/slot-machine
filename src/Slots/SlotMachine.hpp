@@ -18,6 +18,7 @@ public:
     void Update(float dt);
 
     std::vector<SlotRow>& GetRows() { return m_slotRows; }
+    const std::vector<SlotRow>& GetRows() const { return m_slotRows; }
     
 private:
     void SetState(IState* newState);

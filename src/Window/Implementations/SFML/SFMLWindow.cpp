@@ -7,7 +7,7 @@ SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
     , m_height(height)
 {
     sf::VideoMode mode(width, height);
-    m_sfmlWindow = std::make_unique<sf::RenderWindow>(mode, title);
+    m_sfmlWindow = std::make_unique<sf::RenderWindow>(mode, title, sf::Style::Close);
     m_sfmlWindow->setVerticalSyncEnabled(true);
 
     m_startButton = std::make_unique<SFMLButton>(
@@ -15,6 +15,8 @@ SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
 
     m_endButton = std::make_unique<SFMLButton>(
         sf::FloatRect(m_width - 250, 150, 200, 50), "End");
+
+    m_slotsView = std::make_unique<SFMLSlotsView>(sf::FloatRect(50, 50, 450, 450));
 }
 
 SFMLWindow::~SFMLWindow()
@@ -54,12 +56,11 @@ bool SFMLWindow::IsStopButtonPressed()
 
 void SFMLWindow::Render(const SlotMachine& slotMachine)
 {
-    (void)slotMachine;
-
     m_sfmlWindow->clear(sf::Color::White);
 
     m_sfmlWindow->draw(*m_startButton);
     m_sfmlWindow->draw(*m_endButton);
+    m_slotsView->Draw(*m_sfmlWindow, slotMachine.GetRows());
 
     m_sfmlWindow->display();
 }

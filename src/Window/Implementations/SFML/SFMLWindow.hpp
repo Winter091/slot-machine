@@ -3,6 +3,7 @@
 
 #include <src/Window/IWindow.hpp>
 #include "SFMLButton.hpp"
+#include "SFMLSlotsView.hpp"
 #include <SFML/Graphics.hpp>
 
 #include <cstddef>
@@ -29,6 +30,7 @@ private:
 
     std::unique_ptr<SFMLButton> m_startButton;
     std::unique_ptr<SFMLButton> m_endButton;
+    std::unique_ptr<SFMLSlotsView> m_slotsView;
 };
 
 #endif
