@@ -18,8 +18,7 @@ public:
     virtual void DispatchEvents() override;
 
     virtual bool IsClosed() override;
-    virtual bool IsStartButtonPressed() override;
-    virtual bool IsStopButtonPressed() override;
+    virtual bool IsButtonPressed(EButtonType buttonType) override;
 
     virtual void Render(const SlotMachine& slotMachine) override;
 

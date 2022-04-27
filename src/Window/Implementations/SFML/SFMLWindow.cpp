@@ -38,18 +38,21 @@ bool SFMLWindow::IsClosed()
     return !m_sfmlWindow->isOpen();
 }
 
-bool SFMLWindow::IsStartButtonPressed()
+bool SFMLWindow::IsButtonPressed(EButtonType buttonType)
 {
     sf::Vector2i mousePos = sf::Mouse::getPosition(*m_sfmlWindow);
-    bool hit = m_startButton->TestHit(mousePos);
 
-    return hit && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
-}
-
-bool SFMLWindow::IsStopButtonPressed()
-{
-    sf::Vector2i mousePos = sf::Mouse::getPosition(*m_sfmlWindow);
-    bool hit = m_endButton->TestHit(mousePos);
+    bool hit;
+    switch (buttonType) {
+        case EButtonType::Start:
+            hit = m_startButton->TestHit(mousePos);
+            break;
+        case EButtonType::Stop:
+            hit = m_endButton->TestHit(mousePos);
+            break;
+        default:
+            throw std::out_of_range("Can't handle provided buttonType");
+    }
 
     return hit && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
 }

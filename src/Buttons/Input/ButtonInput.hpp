@@ -14,7 +14,9 @@ public:
 
 private:
     ButtonInput();
-    static ButtonInput* GetInstance();
+    ButtonInput(const ButtonInput&) = delete;
+    ButtonInput& operator=(const ButtonInput&) = delete;
+    static ButtonInput& GetInstance();
 
     std::queue<ButtonEvent> m_buttonEvents;
 };
