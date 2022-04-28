@@ -1,5 +1,5 @@
-#ifndef _ESLOTTYPE_H_
-#define _ESLOTTYPE_H_
+#ifndef _ESLOT_TYPE_H_
+#define _ESLOT_TYPE_H_
 
 #include <cstdint>
 

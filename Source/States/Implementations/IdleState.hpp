@@ -1,5 +1,5 @@
-#ifndef _IDLESTATE_H_
-#define _IDLESTATE_H_
+#ifndef _IDLE_STATE_H_
+#define _IDLE_STATE_H_
 
 #include <Source/States/IState.hpp>
 #include <Source/Slots/SlotMachine.hpp>

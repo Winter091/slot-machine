@@ -1,5 +1,5 @@
-#ifndef _SFMLBUTTON_H_
-#define _SFMLBUTTON_H_
+#ifndef _SFML_BUTTON_H_
+#define _SFML_BUTTON_H_
 
 #include <SFML/Graphics.hpp>
 

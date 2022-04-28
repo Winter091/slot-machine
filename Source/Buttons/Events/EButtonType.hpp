@@ -1,5 +1,5 @@
-#ifndef _EBUTTONTYPE_H_
-#define _EBUTTONTYPE_H_
+#ifndef _EBUTTON_TYPE_H_
+#define _EBUTTON_TYPE_H_
 
 #include <cstdint>
 

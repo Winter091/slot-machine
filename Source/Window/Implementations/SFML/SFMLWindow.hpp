@@ -1,5 +1,5 @@
-#ifndef _SFMLWINDOW_H_
-#define _SFMLWINDOW_H_
+#ifndef _SFML_WINDOW_H_
+#define _SFML_WINDOW_H_
 
 #include <Source/Window/IWindow.hpp>
 #include "SFMLButton.hpp"

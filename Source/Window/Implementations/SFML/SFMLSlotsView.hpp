@@ -1,5 +1,5 @@
-#ifndef _SFMLSLOTSVIEW_H_
-#define _SFMLSLOTSVIEW_H_
+#ifndef _SFML_SLOTS_VIEW_H_
+#define _SFML_SLOTS_VIEW_H_
 
 #include <SFML/Graphics.hpp>
 #include <Source/Slots/SlotRow.hpp>

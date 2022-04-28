@@ -1,5 +1,5 @@
-#ifndef _BUTTONINPUT_H_
-#define _BUTTONINPUT_H_
+#ifndef _BUTTON_INPUT_H_
+#define _BUTTON_INPUT_H_
 
 #include <queue>
 

@@ -1,5 +1,5 @@
-#ifndef _SFMLSLOT_H_
-#define _SFMLSLOT_H_
+#ifndef _SFML_SLOT_H_
+#define _SFML_SLOT_H_
 
 #include <SFML/Graphics.hpp>
 #include <Source/Slots/Slot.hpp>

@@ -1,5 +1,5 @@
-#ifndef _STOPSPINSTATE_H_
-#define _STOPSPINSTATE_H_
+#ifndef _STOP_SPIN_STATE_H_
+#define _STOP_SPIN_STATE_H_
 
 #include <Source/States/IState.hpp>
 #include <Source/Slots/SlotMachine.hpp>

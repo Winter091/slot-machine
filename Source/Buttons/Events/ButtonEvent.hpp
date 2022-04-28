@@ -1,5 +1,5 @@
-#ifndef _BUTTONEVENT_H_
-#define _BUTTONEVENT_H_
+#ifndef _BUTTON_EVENT_H_
+#define _BUTTON_EVENT_H_
 
 #include "EButtonType.hpp"
 #include "EButtonAction.hpp"

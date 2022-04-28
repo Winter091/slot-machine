@@ -1,5 +1,5 @@
-#ifndef _EBUTTONACTION_H_
-#define _EBUTTONACTION_H_
+#ifndef _EBUTTON_ACTION_H_
+#define _EBUTTON_ACTION_H_
 
 #include <cstdint>
 

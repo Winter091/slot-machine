@@ -1,5 +1,5 @@
-#ifndef _SLOTMACHINE_H_
-#define _SLOTMACHINE_H_
+#ifndef _SLOT_MACHINE_H_
+#define _SLOT_MACHINE_H_
 
 #include "SlotRow.hpp"
 #include <Source/States/IState.hpp>

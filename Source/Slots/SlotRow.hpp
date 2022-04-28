@@ -1,5 +1,5 @@
-#ifndef _SLOTROW_H_
-#define _SLOTROW_H_
+#ifndef _SLOT_ROW_H_
+#define _SLOT_ROW_H_
 
 #include "Slot.hpp"
 
