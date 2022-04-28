@@ -1,7 +1,7 @@
 #include "StartSpinState.hpp"
 
 #include "SpinState.hpp"
-#include <src/Config.hpp>
+#include <Source/Config.hpp>
 
 #include <random>
 

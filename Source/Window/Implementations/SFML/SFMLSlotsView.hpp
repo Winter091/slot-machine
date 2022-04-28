@@ -2,7 +2,7 @@
 #define _SFMLSLOTSVIEW_H_
 
 #include <SFML/Graphics.hpp>
-#include <src/Slots/SlotRow.hpp>
+#include <Source/Slots/SlotRow.hpp>
 #include <vector>
 #include <cstddef>
 

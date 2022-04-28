@@ -2,7 +2,7 @@
 #define _SFMLSLOT_H_
 
 #include <SFML/Graphics.hpp>
-#include <src/Slots/Slot.hpp>
+#include <Source/Slots/Slot.hpp>
 
 class SFMLSlot
 {

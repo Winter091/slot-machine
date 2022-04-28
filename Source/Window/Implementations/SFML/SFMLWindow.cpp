@@ -1,6 +1,6 @@
 #include "SFMLWindow.hpp"
 
-#include <src/Config.hpp>
+#include <Source/Config.hpp>
 
 #include <iostream>
 

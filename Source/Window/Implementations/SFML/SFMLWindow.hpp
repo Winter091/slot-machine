@@ -1,7 +1,7 @@
 #ifndef _SFMLWINDOW_H_
 #define _SFMLWINDOW_H_
 
-#include <src/Window/IWindow.hpp>
+#include <Source/Window/IWindow.hpp>
 #include "SFMLButton.hpp"
 #include "SFMLSlotsView.hpp"
 #include <SFML/Graphics.hpp>

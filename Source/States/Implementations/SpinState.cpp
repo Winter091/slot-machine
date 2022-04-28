@@ -1,7 +1,7 @@
 #include "SpinState.hpp"
 
 #include "StopSpinState.hpp"
-#include <src/Config.hpp>
+#include <Source/Config.hpp>
 
 using namespace std::chrono;
 using namespace std::chrono_literals;

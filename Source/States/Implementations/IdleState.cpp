@@ -1,7 +1,7 @@
 #include "IdleState.hpp"
 
 #include "StartSpinState.hpp"
-#include <src/Config.hpp>
+#include <Source/Config.hpp>
 
 IState* IdleState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& event)
 {

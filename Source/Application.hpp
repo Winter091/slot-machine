@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include <src/Window/IWindow.hpp>
+#include <Source/Window/IWindow.hpp>
 
 class Application
 {

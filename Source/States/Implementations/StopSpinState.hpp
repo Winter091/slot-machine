@@ -1,8 +1,8 @@
 #ifndef _STOPSPINSTATE_H_
 #define _STOPSPINSTATE_H_
 
-#include <src/States/IState.hpp>
-#include <src/Slots/SlotMachine.hpp>
+#include <Source/States/IState.hpp>
+#include <Source/Slots/SlotMachine.hpp>
 
 #include <chrono>
 

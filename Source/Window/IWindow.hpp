@@ -1,8 +1,8 @@
 #ifndef _IWINDOW_H_
 #define _IWINDOW_H_
 
-#include <src/Slots/SlotMachine.hpp>
-#include <src/Buttons/Events/EButtonType.hpp>
+#include <Source/Slots/SlotMachine.hpp>
+#include <Source/Buttons/Events/EButtonType.hpp>
 
 class IWindow
 {

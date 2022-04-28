@@ -1,7 +1,7 @@
 #include "SlotMachine.hpp"
 
 #include "SlotRow.hpp"
-#include <src/States/Implementations/IdleState.hpp>
+#include <Source/States/Implementations/IdleState.hpp>
 
 #include <cassert>
 #include <iostream>

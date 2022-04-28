@@ -3,8 +3,8 @@
 
 #include <queue>
 
-#include <src/Buttons/Events/ButtonEvent.hpp>
-#include <src/Window/IWindow.hpp>
+#include <Source/Buttons/Events/ButtonEvent.hpp>
+#include <Source/Window/IWindow.hpp>
 
 class ButtonInput
 {

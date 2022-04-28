@@ -1,8 +1,8 @@
 #ifndef _IDLESTATE_H_
 #define _IDLESTATE_H_
 
-#include <src/States/IState.hpp>
-#include <src/Slots/SlotMachine.hpp>
+#include <Source/States/IState.hpp>
+#include <Source/Slots/SlotMachine.hpp>
 
 class IdleState final : public IState
 {

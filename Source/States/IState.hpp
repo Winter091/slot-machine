@@ -1,7 +1,7 @@
 #ifndef _ISTATE_H_
 #define _ISTATE_H_
 
-#include <src/Buttons/Events/ButtonEvent.hpp>
+#include <Source/Buttons/Events/ButtonEvent.hpp>
 
 class SlotMachine;
 

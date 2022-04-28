@@ -2,8 +2,8 @@
 #define _SLOTMACHINE_H_
 
 #include "SlotRow.hpp"
-#include <src/States/IState.hpp>
-#include <src/Buttons/Events/ButtonEvent.hpp>
+#include <Source/States/IState.hpp>
+#include <Source/Buttons/Events/ButtonEvent.hpp>
 
 #include <vector>
 #include <memory>

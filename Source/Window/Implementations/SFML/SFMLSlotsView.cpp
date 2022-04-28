@@ -3,7 +3,7 @@
 #include "SFMLSlot.hpp"
 #include <cmath>
 #include "SFMLButton.hpp"
-#include <src/Utils.hpp>
+#include <Source/Utils.hpp>
 
 void SFMLSlotsView::LoadTextures()
 {

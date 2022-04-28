@@ -1,8 +1,8 @@
 #include "Application.hpp"
 
-#include <src/Window/Implementations/SFML/SFMLWindow.hpp>
-#include <src/Buttons/Input/ButtonInput.hpp>
-#include <src/Config.hpp>
+#include <Source/Window/Implementations/SFML/SFMLWindow.hpp>
+#include <Source/Buttons/Input/ButtonInput.hpp>
+#include <Source/Config.hpp>
 
 #include <chrono>
 #include <iostream>

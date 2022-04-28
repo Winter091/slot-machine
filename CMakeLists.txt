@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED YES)
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
 add_executable(slot-machine)
-add_subdirectory(src)
+add_subdirectory(Source)
 
 target_compile_options(slot-machine PRIVATE -Wall -Wextra)
 
