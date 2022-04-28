@@ -2,40 +2,33 @@
 
 #include "SFMLSlot.hpp"
 #include <cmath>
+#include <iostream>
 #include "SFMLButton.hpp"
 #include <Source/Utils.hpp>
 
-void SFMLSlotsView::LoadTextures()
+
+
+void SFMLSlotsView::TryLoadTexture(const char* path, ESlotType type)
 {
-    sf::Texture texture;
+    auto& texture = m_slotTextures[type];
     texture.setSmooth(true);
+    if (!texture.loadFromFile(path)) {
+        std::cerr << "unable to load texture \"" << path << "\"\n";
+        std::exit(1);
+    }
+}
 
-    texture.loadFromFile("Resources/SlotTextures/apple.png");
-    m_slotTextures[ESlotType::APPLE] = texture;
-
-    texture.loadFromFile("Resources/SlotTextures/glemon.png");
-    m_slotTextures[ESlotType::GLEMON] = texture;
-
-    texture.loadFromFile("Resources/SlotTextures/heart.png");
-    m_slotTextures[ESlotType::HEART] = texture;
-
-    texture.loadFromFile("Resources/SlotTextures/redberry.png");
-    m_slotTextures[ESlotType::RED_BERRY] = texture;
-
-    texture.loadFromFile("Resources/SlotTextures/bar.png");
-    m_slotTextures[ESlotType::BAR] = texture;
-
-    texture.loadFromFile("Resources/SlotTextures/bell.png");
-    m_slotTextures[ESlotType::BELL] = texture;
-
-    texture.loadFromFile("Resources/SlotTextures/seven.png");
-    m_slotTextures[ESlotType::SEVEN] = texture;
-
-    texture.loadFromFile("Resources/SlotTextures/vinegar.png");
-    m_slotTextures[ESlotType::VINEGAR] = texture;
-
-    texture.loadFromFile("Resources/SlotTextures/watermelon.png");
-    m_slotTextures[ESlotType::WATERMELON] = texture;
+void SFMLSlotsView::TryLoadTextures()
+{
+    TryLoadTexture("Resources/SlotTextures/apple.png", ESlotType::APPLE);
+    TryLoadTexture("Resources/SlotTextures/glemon.png", ESlotType::GLEMON);
+    TryLoadTexture("Resources/SlotTextures/heart.png", ESlotType::HEART);
+    TryLoadTexture("Resources/SlotTextures/redberry.png", ESlotType::RED_BERRY);
+    TryLoadTexture("Resources/SlotTextures/bar.png", ESlotType::BAR);
+    TryLoadTexture("Resources/SlotTextures/bell.png", ESlotType::BELL);
+    TryLoadTexture("Resources/SlotTextures/seven.png", ESlotType::SEVEN);
+    TryLoadTexture("Resources/SlotTextures/grape.png", ESlotType::GRAPE);
+    TryLoadTexture("Resources/SlotTextures/watermelon.png", ESlotType::WATERMELON);
 }
 
 SFMLSlotsView::SFMLSlotsView(const sf::FloatRect& boundingRect)
@@ -57,7 +50,7 @@ SFMLSlotsView::SFMLSlotsView(const sf::FloatRect& boundingRect)
     m_sprite.setPosition(boundingRect.left, boundingRect.top);
     m_sprite.setTexture(m_texture.getTexture());
 
-    LoadTextures();
+    TryLoadTextures();
 }
 
 void SFMLSlotsView::Draw(sf::RenderTarget& target, const std::vector<SlotRow>& slotRows)

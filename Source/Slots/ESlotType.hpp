@@ -12,7 +12,7 @@ enum class ESlotType : uint32_t
     BAR,
     BELL,
     SEVEN,
-    VINEGAR,
+    GRAPE,
     WATERMELON,
     COUNT,
 };

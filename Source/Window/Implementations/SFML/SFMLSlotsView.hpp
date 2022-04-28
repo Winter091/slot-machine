@@ -22,7 +22,8 @@ private:
     sf::Sprite m_sprite;
     std::unordered_map<ESlotType, sf::Texture> m_slotTextures;
 
-    void LoadTextures();
+    void TryLoadTextures();
+    void TryLoadTexture(const char* path, ESlotType type);
 };
 
 #endif
