@@ -1,9 +1,11 @@
 #include "StartSpinState.hpp"
 
 #include "SpinState.hpp"
+#include <src/Config.hpp>
 
 #include <random>
 
+using namespace std::chrono;
 using namespace std::chrono_literals;
 
 static std::vector<float> GetRandFloats(std::size_t vecSize, float low, float high)
@@ -20,14 +22,12 @@ static std::vector<float> GetRandFloats(std::size_t vecSize, float low, float hi
     return vec;
 }
 
-StartSpinState::StartSpinState(int numRows, std::chrono::milliseconds duration)
+StartSpinState::StartSpinState(int numRows, milliseconds duration)
 {
-    m_startTime = std::chrono::high_resolution_clock::now();
+    m_startTime = high_resolution_clock::now();
     m_endTime = m_startTime + duration;
 
-    const float minRowSpeed = 0.0002f;
-    const float maxRowSpeed = 0.0005f;
-    m_rowDesiredSpeeds = GetRandFloats(numRows, minRowSpeed, maxRowSpeed);
+    m_rowDesiredSpeeds = GetRandFloats(numRows, cfg::MIN_ROW_SPEED, cfg::MAX_ROW_SPEED);
 }
 
 IState* StartSpinState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& event)
@@ -40,7 +40,7 @@ IState* StartSpinState::HandleButtonEvent(SlotMachine* slotMachine, const Button
 IState* StartSpinState::Update(SlotMachine* slotMachine, float dt)
 {
     auto allDuration = m_endTime - m_startTime;
-    auto currDuration = std::chrono::high_resolution_clock::now() - m_startTime;
+    auto currDuration = high_resolution_clock::now() - m_startTime;
     float part = (float)currDuration.count() / allDuration.count();
 
     IState* ret = nullptr;
@@ -50,7 +50,7 @@ IState* StartSpinState::Update(SlotMachine* slotMachine, float dt)
         for (std::size_t i = 0; i < m_rowDesiredSpeeds.size(); i++) {
             rows[i].SetSpeed(m_rowDesiredSpeeds[i]);
         }
-        ret = new SpinState(15s);
+        ret = new SpinState(milliseconds(cfg::SPIN_MAX_DURATION_MS));
     } else {
         for (std::size_t i = 0; i < m_rowDesiredSpeeds.size(); i++) {
             rows[i].SetSpeed(m_rowDesiredSpeeds[i] * part);

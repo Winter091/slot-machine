@@ -2,13 +2,15 @@
 
 #include <src/Window/Implementations/SFML/SFMLWindow.hpp>
 #include <src/Buttons/Input/ButtonInput.hpp>
+#include <src/Config.hpp>
 
 #include <chrono>
 #include <iostream>
 
 Application::Application()
-    : m_window(std::make_unique<SFMLWindow>(970, 720, "My window"))
-    , m_slotMachine(SlotMachine::NewRandom(5, 25))
+    : m_window(std::make_unique<SFMLWindow>(
+        cfg::WINDOW_WIDTH, cfg::WINDOW_HEIGHT, cfg::WINDOW_TITLE))
+    , m_slotMachine(SlotMachine::NewRandom(cfg::NUM_SLOT_ROWS, cfg::NUM_SLOTS_IN_ROW))
 {}
 
 Application::~Application()

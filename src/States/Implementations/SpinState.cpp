@@ -1,12 +1,14 @@
 #include "SpinState.hpp"
 
 #include "StopSpinState.hpp"
+#include <src/Config.hpp>
 
+using namespace std::chrono;
 using namespace std::chrono_literals;
 
-SpinState::SpinState(std::chrono::milliseconds maxDuration)
+SpinState::SpinState(milliseconds maxDuration)
 {
-    m_maxEndTime = std::chrono::high_resolution_clock::now() + maxDuration;
+    m_maxEndTime = high_resolution_clock::now() + maxDuration;
 }
 
 IState* SpinState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& event)
@@ -17,7 +19,7 @@ IState* SpinState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent
 
     switch (event.GetType()) {
         case EButtonType::Stop:
-            return new StopSpinState(slotMachine->GetRows(), 1s);
+            return new StopSpinState(slotMachine->GetRows(), milliseconds(cfg::STOP_MIN_DURATION_MS));
             break;
         default:
             break;
@@ -32,8 +34,8 @@ IState* SpinState::Update(SlotMachine* slotMachine, float dt)
         row.Move(row.GetSpeed() * dt);
     }
     
-    if (std::chrono::high_resolution_clock::now() > m_maxEndTime) {
-        return new StopSpinState(slotMachine->GetRows(), 1s);
+    if (high_resolution_clock::now() > m_maxEndTime) {
+        return new StopSpinState(slotMachine->GetRows(), milliseconds(cfg::STOP_MIN_DURATION_MS));
     }
 
     return nullptr;

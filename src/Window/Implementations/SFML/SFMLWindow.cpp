@@ -1,5 +1,7 @@
 #include "SFMLWindow.hpp"
 
+#include <src/Config.hpp>
+
 #include <iostream>
 
 SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
@@ -11,13 +13,25 @@ SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
     m_sfmlWindow->setVerticalSyncEnabled(true);
 
     m_startButton = std::make_unique<SFMLButton>(
-        sf::FloatRect(m_width - 250, 50, 200, 50), "Start");
+        sf::FloatRect(
+            cfg::START_BUTTON_X, cfg::START_BUTTON_Y, 
+            cfg::START_BUTTON_WIDTH, cfg::START_BUTTON_HEIGHT
+        ), 
+        "Start"
+    );
 
-    m_endButton = std::make_unique<SFMLButton>(
-        sf::FloatRect(m_width - 250, 150, 200, 50), "End");
+    m_stopButton = std::make_unique<SFMLButton>(
+        sf::FloatRect(
+            cfg::STOP_BUTTON_X, cfg::STOP_BUTTON_Y, 
+            cfg::STOP_BUTTON_WIDTH, cfg::STOP_BUTTON_HEIGHT
+        ),
+        "Stop"
+    );
 
-    m_slotsView = std::make_unique<SFMLSlotsView>(
-        sf::FloatRect(50, 50, m_height - 100, m_height - 100));
+    m_slotsView = std::make_unique<SFMLSlotsView>(sf::FloatRect(
+        cfg::SLOTSVIEW_X, cfg::SLOTSVIEW_Y, 
+        cfg::SLOTSVIEW_WIDTH, cfg::SLOTSVIEW_HEIGHT
+    ));
 }
 
 SFMLWindow::~SFMLWindow()
@@ -49,7 +63,7 @@ bool SFMLWindow::IsButtonPressed(EButtonType buttonType)
             hit = m_startButton->TestHit(mousePos);
             break;
         case EButtonType::Stop:
-            hit = m_endButton->TestHit(mousePos);
+            hit = m_stopButton->TestHit(mousePos);
             break;
         default:
             throw std::out_of_range("Can't handle provided buttonType");
@@ -63,7 +77,7 @@ void SFMLWindow::Render(const SlotMachine& slotMachine)
     m_sfmlWindow->clear(sf::Color::White);
 
     m_sfmlWindow->draw(*m_startButton);
-    m_sfmlWindow->draw(*m_endButton);
+    m_sfmlWindow->draw(*m_stopButton);
     m_slotsView->Draw(*m_sfmlWindow, slotMachine.GetRows());
 
     m_sfmlWindow->display();

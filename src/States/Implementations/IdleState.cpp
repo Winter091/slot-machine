@@ -1,6 +1,7 @@
 #include "IdleState.hpp"
 
 #include "StartSpinState.hpp"
+#include <src/Config.hpp>
 
 IState* IdleState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& event)
 {
@@ -8,12 +9,13 @@ IState* IdleState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent
         return nullptr;
     }
 
+    using namespace std::chrono;
     using namespace std::chrono_literals;
 
     switch (event.GetType()) {
         case EButtonType::Start:
-            return new StartSpinState(slotMachine->GetRows().size(), 1s);
-            break;
+            return new StartSpinState(slotMachine->GetRows().size(), 
+                milliseconds(cfg::START_SPIN_DURATION_MS));
         default:
             break;
     }

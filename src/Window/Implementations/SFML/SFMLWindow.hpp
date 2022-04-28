@@ -28,7 +28,7 @@ private:
     std::unique_ptr<sf::RenderWindow> m_sfmlWindow;
 
     std::unique_ptr<SFMLButton> m_startButton;
-    std::unique_ptr<SFMLButton> m_endButton;
+    std::unique_ptr<SFMLButton> m_stopButton;
     std::unique_ptr<SFMLSlotsView> m_slotsView;
 };
 

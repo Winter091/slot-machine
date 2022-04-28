@@ -1,6 +1,7 @@
 target_sources(
     slot-machine PRIVATE
     Application.cpp
+    Config.cpp
     main.cpp
 )
 
