@@ -7,7 +7,7 @@
 class ButtonEvent
 {
 public:
-    ButtonEvent() {};
+    ButtonEvent() = default;
     ButtonEvent(EButtonType type, EButtonAction action);
 
     EButtonType GetType() const;

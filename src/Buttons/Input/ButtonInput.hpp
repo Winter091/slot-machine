@@ -13,9 +13,10 @@ public:
     static bool GetNextEvent(ButtonEvent& outEvent);
 
 private:
-    ButtonInput();
+    ButtonInput() = default;
     ButtonInput(const ButtonInput&) = delete;
     ButtonInput& operator=(const ButtonInput&) = delete;
+    
     static ButtonInput& GetInstance();
 
     std::queue<ButtonEvent> m_buttonEvents;

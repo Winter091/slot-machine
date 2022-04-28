@@ -10,6 +10,8 @@ class SFMLSlotsView
 {
 public:
     SFMLSlotsView(const sf::FloatRect& boundingRect);
+    SFMLSlotsView(const SFMLSlotsView&) = delete;
+    SFMLSlotsView& operator=(const SFMLSlotsView&) = delete;
 
     void Draw(sf::RenderTarget& target, const std::vector<SlotRow>& slotRows);
 

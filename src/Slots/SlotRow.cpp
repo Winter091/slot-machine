@@ -27,9 +27,6 @@ void SlotRow::Move(float posDelta)
     if (m_position < 0.0f) {
         m_position += 1.0f;
     }
-    if (m_position >= 1.0f) {
-        m_position -= 1.0f;
-    }
 }
 
 int SlotRow::IndexFromPosition(float pos) const

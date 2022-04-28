@@ -10,7 +10,6 @@ public:
     virtual void DispatchEvents() = 0;
 
     virtual bool IsClosed() = 0;
-
     virtual bool IsButtonPressed(EButtonType buttonType) = 0;
 
     virtual void Render(const SlotMachine& SlotMachine) = 0;

@@ -1,10 +1,5 @@
 #include "ButtonInput.hpp"
 
-#include <iostream>
-
-ButtonInput::ButtonInput()
-{}
-
 ButtonInput& ButtonInput::GetInstance()
 {
     static ButtonInput input;

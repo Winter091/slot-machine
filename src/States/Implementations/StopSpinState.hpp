@@ -6,15 +6,13 @@
 
 #include <chrono>
 
-class StopSpinState : public IState
+class StopSpinState final : public IState
 {
 public:
     StopSpinState(const std::vector<SlotRow>& rows, std::chrono::milliseconds minDuration);
 
     virtual IState* HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& input) override;
     virtual IState* Update(SlotMachine* slotMachine, float dt) override;
-
-    virtual const char* GetDebugName() const override { return "StopSpin"; }
 
     virtual ~StopSpinState() override {};
 

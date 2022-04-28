@@ -7,7 +7,7 @@
 #include <iostream>
 #include <unordered_map>
 
-SlotMachine::SlotMachine(std::vector<SlotRow> slotRows)
+SlotMachine::SlotMachine(const std::vector<SlotRow>& slotRows)
     : m_slotRows(slotRows)
     , m_state(new IdleState())
 {}

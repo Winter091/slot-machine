@@ -13,7 +13,9 @@ class SFMLWindow final : public IWindow
 {
 public:
     SFMLWindow(uint32_t width, uint32_t height, const char* title);
-    virtual ~SFMLWindow() override;
+    SFMLWindow(SFMLWindow&) = delete;
+    SFMLWindow& operator=(SFMLWindow&) = delete;
+    virtual ~SFMLWindow() override {}
 
     virtual void DispatchEvents() override;
 

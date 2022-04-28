@@ -8,6 +8,8 @@ class SFMLSlot
 {
 public:
     SFMLSlot(const sf::Vector2f& size, const sf::Texture& texture);
+    SFMLSlot(const SFMLSlot&) = delete;
+    SFMLSlot& operator=(const SFMLSlot&) = delete;
 
     void Draw(sf::RenderTarget& target, const sf::Vector2f& pos);
 

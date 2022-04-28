@@ -7,6 +7,8 @@ class SFMLButton : public sf::Drawable
 {
 public:
     SFMLButton(const sf::FloatRect& rect, const sf::String& text);
+    SFMLButton(const SFMLButton&) = delete;
+    SFMLButton& operator=(const SFMLButton&) = delete;
     virtual ~SFMLButton() override {}
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

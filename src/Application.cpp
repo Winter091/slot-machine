@@ -13,9 +13,6 @@ Application::Application()
     , m_slotMachine(SlotMachine::NewRandom(cfg::NUM_SLOT_ROWS, cfg::NUM_SLOTS_IN_ROW))
 {}
 
-Application::~Application()
-{}
-
 void Application::MainLoop()
 {
     auto prevTime = std::chrono::high_resolution_clock::now();

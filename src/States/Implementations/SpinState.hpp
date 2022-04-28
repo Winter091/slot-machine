@@ -6,15 +6,13 @@
 
 #include <chrono>
 
-class SpinState : public IState
+class SpinState final : public IState
 {
 public:
     SpinState(std::chrono::milliseconds maxDuration);
 
     virtual IState* HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& input) override;
     virtual IState* Update(SlotMachine* slotMachine, float dt) override;
-
-    virtual const char* GetDebugName() const override { return "Spin"; }
 
     virtual ~SpinState() override {};
 

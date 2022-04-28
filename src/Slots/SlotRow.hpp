@@ -10,6 +10,8 @@ class SlotRow
 public:
     SlotRow(const std::vector<Slot>& slots);
     static SlotRow NewRandom(uint32_t size);
+    SlotRow(const SlotRow&) = default;
+    SlotRow& operator=(const SlotRow&) = default;
 
     float GetPosition() const { return m_position; }
     void Move(float posDelta);   

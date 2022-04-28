@@ -34,10 +34,6 @@ SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
     ));
 }
 
-SFMLWindow::~SFMLWindow()
-{
-}
-
 void SFMLWindow::DispatchEvents()
 {
     sf::Event event;
