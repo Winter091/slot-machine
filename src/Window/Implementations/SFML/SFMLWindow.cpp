@@ -16,7 +16,8 @@ SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
     m_endButton = std::make_unique<SFMLButton>(
         sf::FloatRect(m_width - 250, 150, 200, 50), "End");
 
-    m_slotsView = std::make_unique<SFMLSlotsView>(sf::FloatRect(50, 50, 450, 450));
+    m_slotsView = std::make_unique<SFMLSlotsView>(
+        sf::FloatRect(50, 50, m_height - 100, m_height - 100));
 }
 
 SFMLWindow::~SFMLWindow()

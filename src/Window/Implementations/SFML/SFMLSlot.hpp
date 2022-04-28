@@ -15,6 +15,4 @@ private:
     sf::Sprite m_sprite;
 };
 
-sf::Color GetColor(ESlotType type);
-
 #endif

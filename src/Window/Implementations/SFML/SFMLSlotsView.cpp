@@ -49,7 +49,7 @@ SFMLSlotsView::SFMLSlotsView(const sf::FloatRect& boundingRect)
     m_boundingRect.setOutlineThickness(2.0f);
 
     m_centerRowRect.setFillColor(transparentColor);
-    m_centerRowRect.setOutlineColor(sf::Color::Red);
+    m_centerRowRect.setOutlineColor(sf::Color::Black);
     m_centerRowRect.setOutlineThickness(-5.0f);
 
     m_texture.create(boundingRect.width, boundingRect.height);
