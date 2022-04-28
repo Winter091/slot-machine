@@ -9,7 +9,7 @@
 
 SlotMachine::SlotMachine(const std::vector<SlotRow>& slotRows)
     : m_slotRows(slotRows)
-    , m_state(new IdleState())
+    , m_state(std::make_unique<IdleState>())
 {}
 
 SlotMachine* SlotMachine::NewRandom(uint32_t numRows, uint32_t numInRow)
@@ -31,7 +31,7 @@ void SlotMachine::HandleButtonEvent(const ButtonEvent& event)
 
     IState* newState = m_state->HandleButtonEvent(this, event);
     if (newState) {
-        SetState(newState);
+        m_state.reset(newState);
     }
 }
 
@@ -41,12 +41,6 @@ void SlotMachine::Update(float dt)
 
     IState* newState = m_state->Update(this, dt);
     if (newState) {
-        SetState(newState);
+        m_state.reset(newState);
     }
-}
-
-void SlotMachine::SetState(IState* newState)
-{
-    delete m_state;
-    m_state = newState;
 }

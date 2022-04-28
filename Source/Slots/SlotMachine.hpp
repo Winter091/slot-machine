@@ -23,10 +23,8 @@ public:
     const std::vector<SlotRow>& GetRows() const { return m_slotRows; }
     
 private:
-    void SetState(IState* newState);
-
     std::vector<SlotRow> m_slotRows;
-    IState* m_state;
+    std::unique_ptr<IState> m_state;
 };
 
 #endif
