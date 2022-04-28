@@ -44,10 +44,8 @@ StopSpinState::StopSpinState(const std::vector<SlotRow>& rows, std::chrono::mill
     }
 }
 
-IState* StopSpinState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& event)
+IState* StopSpinState::HandleButtonEvent(SlotMachine* /*slotMachine*/, const ButtonEvent& /*event*/)
 {
-    (void)slotMachine;
-    (void)event;
     return nullptr;
 }
 

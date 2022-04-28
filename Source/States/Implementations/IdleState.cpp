@@ -23,9 +23,7 @@ IState* IdleState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent
     return nullptr;
 }
 
-IState* IdleState::Update(SlotMachine* slotMachine, float dt)
+IState* IdleState::Update(SlotMachine* /*slotMachine*/, float /*dt*/)
 {
-    (void)slotMachine;
-    (void)dt;
     return nullptr;
 }

@@ -26,10 +26,8 @@ SFMLButton::SFMLButton(const sf::FloatRect& rect, const sf::String& text)
     m_text.setPosition(m_rect.getPosition() + m_rect.getSize() / 2.0f);
 }
 
-void SFMLButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void SFMLButton::draw(sf::RenderTarget& target, sf::RenderStates /*states*/) const
 {
-    (void)states;
-    
     target.draw(m_rect);
     target.draw(m_text);
 }
