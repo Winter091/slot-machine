@@ -41,8 +41,8 @@ cmake .. \
     -G <Your favorite generator>
 ```
 
-`-DDCMAKE_LIBRARY_PATH` is optional is SFML is installed to default 
-library location.
+`-DDCMAKE_LIBRARY_PATH` is not required if SFML is installed 
+to default library location.
 
 After that, you'll have generator, using which you'll be
 able to compile the project.
