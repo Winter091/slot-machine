@@ -22,7 +22,7 @@ Its features are:
 
 ## Linux
 Install `libsfml-dev` and `libsfml-system2.5` using your 
-distro's packet manager. Then build the project using
+distro's package manager. Then build the project using
 ```sh
 mkdir build && cd build
 cmake ..
