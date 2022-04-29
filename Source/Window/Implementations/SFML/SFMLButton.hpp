@@ -13,6 +13,9 @@ public:
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
+    void setFillColor(const sf::Color& color);
+    void setTextColor(const sf::Color& color);
+
     bool TestHit(sf::Vector2i point) const;
 
 private:

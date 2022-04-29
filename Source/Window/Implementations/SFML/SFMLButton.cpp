@@ -19,7 +19,7 @@ SFMLButton::SFMLButton(const sf::FloatRect& rect, const sf::String& text)
     m_text.setFont(m_textFont);
     m_text.setString(text);
     m_text.setCharacterSize(44);
-    m_text.setFillColor(sf::Color::Red);
+    m_text.setFillColor(sf::Color::White);
 
     const auto& global = m_text.getGlobalBounds();
     m_text.setOrigin(sf::Vector2f(global.width / 2.0f, global.height / 1.3f));
@@ -30,6 +30,16 @@ void SFMLButton::draw(sf::RenderTarget& target, sf::RenderStates /*states*/) con
 {
     target.draw(m_rect);
     target.draw(m_text);
+}
+
+void SFMLButton::setFillColor(const sf::Color& color)
+{
+    m_rect.setFillColor(color);
+}
+
+void SFMLButton::setTextColor(const sf::Color& color)
+{
+    m_text.setFillColor(color);
 }
 
 bool SFMLButton::TestHit(sf::Vector2i point) const

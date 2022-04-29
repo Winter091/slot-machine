@@ -72,8 +72,14 @@ void SFMLWindow::Render(const SlotMachine& slotMachine)
 {
     m_sfmlWindow->clear(sf::Color::White);
 
+    const auto& pressColor = sf::Color(178, 13, 192);
+    const auto& usualColor = sf::Color(36, 130, 234);
+    m_startButton->setFillColor(IsButtonPressed(EButtonType::Start) ? pressColor : usualColor);
+    m_stopButton->setFillColor(IsButtonPressed(EButtonType::Stop) ? pressColor : usualColor);
+
     m_sfmlWindow->draw(*m_startButton);
     m_sfmlWindow->draw(*m_stopButton);
+
     m_slotsView->Draw(*m_sfmlWindow, slotMachine.GetRows());
 
     m_sfmlWindow->display();
