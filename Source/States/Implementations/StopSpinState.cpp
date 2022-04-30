@@ -76,9 +76,7 @@ IState* StopSpinState::Update(SlotMachine& slotMachine, float dt)
         }
     }
 
-    for (auto& row : slotMachine.GetRows()) {
-        row.Move(row.GetSpeed() * dt);
-    }
+    slotMachine.MoveAllRows(dt);
 
     if (m_numRunning == 0) {
         return new IdleState();

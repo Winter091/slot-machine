@@ -55,9 +55,7 @@ IState* StartSpinState::Update(SlotMachine& slotMachine, float dt)
         }
     }
 
-    for (auto& row : slotMachine.GetRows()) {
-        row.Move(row.GetSpeed() * dt);
-    }
-
+    slotMachine.MoveAllRows(dt);
+    
     return ret;
 }

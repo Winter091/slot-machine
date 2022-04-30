@@ -21,6 +21,8 @@ public:
 
     std::vector<SlotRow>& GetRows() { return m_slotRows; }
     const std::vector<SlotRow>& GetRows() const { return m_slotRows; }
+
+    void MoveAllRows(float dt);
     
 private:
     std::vector<SlotRow> m_slotRows;

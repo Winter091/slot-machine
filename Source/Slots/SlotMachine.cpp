@@ -44,3 +44,10 @@ void SlotMachine::Update(float dt)
         m_state.reset(newState);
     }
 }
+
+void SlotMachine::MoveAllRows(float dt)
+{
+    for (auto& row : m_slotRows) {
+        row.Move(row.GetSpeed() * dt);
+    }
+}

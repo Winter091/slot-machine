@@ -30,9 +30,7 @@ IState* SpinState::HandleButtonEvent(SlotMachine& slotMachine, const ButtonEvent
 
 IState* SpinState::Update(SlotMachine& slotMachine, float dt)
 {   
-    for (auto& row : slotMachine.GetRows()) {
-        row.Move(row.GetSpeed() * dt);
-    }
+    slotMachine.MoveAllRows(dt);
     
     if (high_resolution_clock::now() > m_maxEndTime) {
         return new StopSpinState(slotMachine.GetRows(), milliseconds(cfg::STOP_MIN_DURATION_MS));
