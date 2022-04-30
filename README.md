@@ -3,7 +3,7 @@
 A simple, little and quite pointless slot machine simulator
 built using SFML.
 
-![](Media/main-window-screenshot.png)
+![](Media/main-window.gif)
 
 Its main purpose is to show my ability of coming up with 
 a clean architecture. 
