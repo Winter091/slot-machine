@@ -29,7 +29,7 @@ void SlotMachine::HandleButtonEvent(const ButtonEvent& event)
 {
     assert(m_state && "State pointer is nullptr");
 
-    IState* newState = m_state->HandleButtonEvent(this, event);
+    IState* newState = m_state->HandleButtonEvent(*this, event);
     if (newState) {
         m_state.reset(newState);
     }
@@ -39,7 +39,7 @@ void SlotMachine::Update(float dt)
 {
     assert(m_state && "State pointer is nullptr");
 
-    IState* newState = m_state->Update(this, dt);
+    IState* newState = m_state->Update(*this, dt);
     if (newState) {
         m_state.reset(newState);
     }

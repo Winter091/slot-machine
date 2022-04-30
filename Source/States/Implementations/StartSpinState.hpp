@@ -12,8 +12,8 @@ class StartSpinState final : public IState
 public:
     StartSpinState(int numRows, std::chrono::milliseconds duration);
 
-    virtual IState* HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& input) override;
-    virtual IState* Update(SlotMachine* slotMachine, float dt) override;
+    virtual IState* HandleButtonEvent(SlotMachine& slotMachine, const ButtonEvent& input) override;
+    virtual IState* Update(SlotMachine& slotMachine, float dt) override;
 
     virtual ~StartSpinState() override {};
 

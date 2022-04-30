@@ -11,8 +11,8 @@ class StopSpinState final : public IState
 public:
     StopSpinState(const std::vector<SlotRow>& rows, std::chrono::milliseconds minDuration);
 
-    virtual IState* HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& input) override;
-    virtual IState* Update(SlotMachine* slotMachine, float dt) override;
+    virtual IState* HandleButtonEvent(SlotMachine& slotMachine, const ButtonEvent& input) override;
+    virtual IState* Update(SlotMachine& slotMachine, float dt) override;
 
     virtual ~StopSpinState() override {};
 

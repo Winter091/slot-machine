@@ -44,16 +44,16 @@ StopSpinState::StopSpinState(const std::vector<SlotRow>& rows, std::chrono::mill
     }
 }
 
-IState* StopSpinState::HandleButtonEvent(SlotMachine* /*slotMachine*/, const ButtonEvent& /*event*/)
+IState* StopSpinState::HandleButtonEvent(SlotMachine& /*slotMachine*/, const ButtonEvent& /*event*/)
 {
     return nullptr;
 }
 
-IState* StopSpinState::Update(SlotMachine* slotMachine, float dt)
+IState* StopSpinState::Update(SlotMachine& slotMachine, float dt)
 {
     using namespace std::chrono;
 
-    auto& rows = slotMachine->GetRows();
+    auto& rows = slotMachine.GetRows();
 
     const auto currTime = high_resolution_clock::now();
     
@@ -76,7 +76,7 @@ IState* StopSpinState::Update(SlotMachine* slotMachine, float dt)
         }
     }
 
-    for (auto& row : slotMachine->GetRows()) {
+    for (auto& row : slotMachine.GetRows()) {
         row.Move(row.GetSpeed() * dt);
     }
 

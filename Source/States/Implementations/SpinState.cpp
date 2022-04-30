@@ -11,7 +11,7 @@ SpinState::SpinState(milliseconds maxDuration)
     m_maxEndTime = high_resolution_clock::now() + maxDuration;
 }
 
-IState* SpinState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& event)
+IState* SpinState::HandleButtonEvent(SlotMachine& slotMachine, const ButtonEvent& event)
 {
     if (event.GetAction() != EButtonAction::Press) {
         return nullptr;
@@ -19,7 +19,7 @@ IState* SpinState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent
 
     switch (event.GetType()) {
         case EButtonType::Stop:
-            return new StopSpinState(slotMachine->GetRows(), milliseconds(cfg::STOP_MIN_DURATION_MS));
+            return new StopSpinState(slotMachine.GetRows(), milliseconds(cfg::STOP_MIN_DURATION_MS));
             break;
         default:
             break;
@@ -28,14 +28,14 @@ IState* SpinState::HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent
     return nullptr;
 }
 
-IState* SpinState::Update(SlotMachine* slotMachine, float dt)
+IState* SpinState::Update(SlotMachine& slotMachine, float dt)
 {   
-    for (auto& row : slotMachine->GetRows()) {
+    for (auto& row : slotMachine.GetRows()) {
         row.Move(row.GetSpeed() * dt);
     }
     
     if (high_resolution_clock::now() > m_maxEndTime) {
-        return new StopSpinState(slotMachine->GetRows(), milliseconds(cfg::STOP_MIN_DURATION_MS));
+        return new StopSpinState(slotMachine.GetRows(), milliseconds(cfg::STOP_MIN_DURATION_MS));
     }
 
     return nullptr;

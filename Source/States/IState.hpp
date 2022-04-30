@@ -12,8 +12,8 @@ public:
     IState(const IState&) = delete;
     IState& operator=(const IState&) = delete;
 
-    virtual IState* HandleButtonEvent(SlotMachine* slotMachine, const ButtonEvent& event) = 0;
-    virtual IState* Update(SlotMachine* slotMachine, float dt) = 0;
+    virtual IState* HandleButtonEvent(SlotMachine& slotMachine, const ButtonEvent& event) = 0;
+    virtual IState* Update(SlotMachine& slotMachine, float dt) = 0;
 
     virtual ~IState() {};
 };
