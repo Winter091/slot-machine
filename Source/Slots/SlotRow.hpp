@@ -4,6 +4,7 @@
 #include "Slot.hpp"
 
 #include <vector>
+#include <cmath>
 
 class SlotRow
 {
@@ -13,7 +14,9 @@ public:
     SlotRow(const SlotRow&) = default;
     SlotRow& operator=(const SlotRow&) = default;
 
+    void SetPosition(float newPos) { m_position = std::fmod(newPos, 1.0f); }
     float GetPosition() const { return m_position; }
+    
     void Move(float posDelta);   
     
     void SetSpeed(float newSpeed) { m_speed = newSpeed; }

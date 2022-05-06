@@ -19,8 +19,10 @@ public:
 private:
     std::chrono::high_resolution_clock::time_point m_startTime;
 
-    std::vector<float> m_startRowSpeeds;
-    std::vector<std::chrono::milliseconds> m_stopTimes;
+    std::vector<float> m_startSpeeds;
+    std::vector<float> m_stopDurationsMs;
+    std::vector<float> m_startPositions;
+    std::vector<float> m_distToTravel;
     std::vector<bool> m_alreadyStopped;
     int m_numRunning;
 };
