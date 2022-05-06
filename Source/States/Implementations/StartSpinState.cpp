@@ -1,26 +1,11 @@
 #include "StartSpinState.hpp"
 
 #include "SpinState.hpp"
+#include "Source/Utils.hpp"
 #include <Source/Config.hpp>
-
-#include <random>
 
 using namespace std::chrono;
 using namespace std::chrono_literals;
-
-static std::vector<float> GetRandFloats(std::size_t vecSize, float low, float high)
-{
-    static std::random_device rd;
-    static std::mt19937 e2(rd());
-    std::uniform_real_distribution<float> dist(low, high);
-
-    std::vector<float> vec(vecSize);
-    for (float& elem : vec) {
-        elem = dist(e2);
-    }
-
-    return vec;
-}
 
 StartSpinState::StartSpinState(int numRows, milliseconds duration)
 {
