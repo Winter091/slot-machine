@@ -28,6 +28,25 @@ SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
         "Stop"
     );
 
+    // Use transparent buttons because they can draw text
+    m_winTextButton = std::make_unique<SFMLButton>(
+        sf::FloatRect(
+            0, 0, cfg::WINDOW_WIDTH, cfg::WINDOW_HEIGHT
+        ),
+        "You won!"
+    );
+    m_winTextButton->setFillColor(sf::Color(0, 0, 0, 0));
+    m_winTextButton->setTextColor(sf::Color(0, 0, 0, 255));
+
+    m_loseTextButton = std::make_unique<SFMLButton>(
+        sf::FloatRect(
+            0, 0, cfg::WINDOW_WIDTH, cfg::WINDOW_HEIGHT
+        ),
+        "You lost!"
+    );
+    m_loseTextButton->setFillColor(sf::Color(0, 0, 0, 0));
+    m_loseTextButton->setTextColor(sf::Color(0, 0, 0, 255));
+
     m_slotsView = std::make_unique<SFMLSlotsView>(sf::FloatRect(
         cfg::SLOTSVIEW_X, cfg::SLOTSVIEW_Y, 
         cfg::SLOTSVIEW_WIDTH, cfg::SLOTSVIEW_HEIGHT
@@ -71,6 +90,12 @@ bool SFMLWindow::IsButtonPressed(EButtonType buttonType)
 void SFMLWindow::Render(const SlotMachine& slotMachine)
 {
     m_sfmlWindow->clear(sf::Color::White);
+
+    if (slotMachine.GetCurrentState() == EStateName::ShowResults) {
+        m_sfmlWindow->draw(slotMachine.GetHasWon() ? *m_winTextButton : *m_loseTextButton);
+        m_sfmlWindow->display();
+        return;
+    }
 
     const auto& pressColor = sf::Color(178, 13, 192);
     const auto& usualColor = sf::Color(36, 130, 234);

@@ -1,6 +1,7 @@
 #include "StopSpinState.hpp"
 
-#include "IdleState.hpp"
+#include "ShowResultsState.hpp"
+#include <Source/Config.hpp>
 #include <cmath>
 #include <iostream>
 
@@ -85,7 +86,7 @@ IState* StopSpinState::Update(SlotMachine& slotMachine, float /* dt */)
     }
 
     if (m_numRunning == 0) {
-        return new IdleState();
+        return new ShowResultsState(slotMachine, milliseconds(cfg::SHOW_RESULTS_DURATION_MS));
     }
 
     return nullptr;

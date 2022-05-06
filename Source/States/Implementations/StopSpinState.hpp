@@ -13,6 +13,7 @@ public:
 
     virtual IState* HandleButtonEvent(SlotMachine& slotMachine, const ButtonEvent& input) override;
     virtual IState* Update(SlotMachine& slotMachine, float dt) override;
+    virtual inline EStateName GetName() const override { return EStateName::StopSpin; }
 
     virtual ~StopSpinState() override {};
 

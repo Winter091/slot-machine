@@ -28,6 +28,7 @@ extern int NUM_SLOTS_IN_ROW;
 extern int START_SPIN_DURATION_MS;
 extern int SPIN_MAX_DURATION_MS;
 extern int STOP_MIN_DURATION_MS;
+extern int SHOW_RESULTS_DURATION_MS;
 
 extern float MIN_ROW_SPEED;
 extern float MAX_ROW_SPEED;

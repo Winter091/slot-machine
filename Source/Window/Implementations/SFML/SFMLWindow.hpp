@@ -31,6 +31,8 @@ private:
 
     std::unique_ptr<SFMLButton> m_startButton;
     std::unique_ptr<SFMLButton> m_stopButton;
+    std::unique_ptr<SFMLButton> m_winTextButton;
+    std::unique_ptr<SFMLButton> m_loseTextButton;
     std::unique_ptr<SFMLSlotsView> m_slotsView;
 };
 

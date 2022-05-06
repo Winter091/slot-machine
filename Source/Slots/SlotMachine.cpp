@@ -10,6 +10,7 @@
 SlotMachine::SlotMachine(const std::vector<SlotRow>& slotRows)
     : m_slotRows(slotRows)
     , m_state(std::make_unique<IdleState>())
+    , m_hasWon(false)
 {}
 
 SlotMachine* SlotMachine::NewRandom(uint32_t numRows, uint32_t numInRow)
@@ -49,5 +50,30 @@ void SlotMachine::MoveAllRows(float dt)
 {
     for (auto& row : m_slotRows) {
         row.Move(row.GetSpeed() * dt);
+    }
+}
+
+void SlotMachine::RecalcWinStatus()
+{
+    m_hasWon = true;
+
+    ESlotType prevSlot;
+    bool hasValue = false;
+    
+    for (const auto& row : m_slotRows) {
+        ESlotType slot = static_cast<ESlotType>(row.IndexFromPosition(row.GetPosition()));
+        
+        if (!hasValue) {
+            prevSlot = slot;
+            hasValue = true;
+            continue;
+        }
+
+        if (slot != prevSlot) {
+            m_hasWon = false;
+            break;
+        }
+
+        prevSlot = slot;
     }
 }
