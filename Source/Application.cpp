@@ -18,12 +18,12 @@ void Application::MainLoop()
 {
     auto prevTime = std::chrono::high_resolution_clock::now();
     
-    while (!m_window->IsClosed()) {
+    while (m_window->IsOpen()) {
         auto currTime = std::chrono::high_resolution_clock::now();
         float dt = (currTime - prevTime).count() / 1'000'000.0f;
         prevTime = currTime;
 
-        m_window->HandleEvents();
+        m_window->Update();
         while (std::unique_ptr<IEvent> event = EventQueue::GetNextEvent()) {
             m_slotMachine->HandleEvent(*event);
         }

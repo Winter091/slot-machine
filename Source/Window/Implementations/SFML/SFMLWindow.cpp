@@ -49,7 +49,7 @@ SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
     ));
 }
 
-void SFMLWindow::HandleEvents()
+void SFMLWindow::Update()
 {
     sf::Event event;
     while (m_sfmlWindow->pollEvent(event)) {
@@ -66,31 +66,9 @@ void SFMLWindow::HandleEvents()
     }
 }
 
-bool SFMLWindow::IsClosed()
+bool SFMLWindow::IsOpen()
 {
-    return !m_sfmlWindow->isOpen();
-}
-
-bool SFMLWindow::IsButtonPressed(EButtonType buttonType)
-{
-    sf::Vector2i mousePos = sf::Mouse::getPosition(*m_sfmlWindow);
-
-    bool hit;
-    switch (buttonType) {
-        case EButtonType::Start:
-            hit = m_startButton->TestHit(mousePos);
-            break;
-        case EButtonType::Stop:
-            hit = m_stopButton->TestHit(mousePos);
-            break;
-        case EButtonType::WinMessage:
-            hit = m_winMessageButton->TestHit(mousePos);
-            break;
-        default:
-            throw std::out_of_range("Can't handle provided buttonType");
-    }
-
-    return hit && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+    return m_sfmlWindow->isOpen();
 }
 
 void SFMLWindow::Render(const SlotMachine& slotMachine)
@@ -142,4 +120,26 @@ void SFMLWindow::HandleMouseButtonEvent(const sf::Event& event)
             return;
         }
     }
+}
+
+bool SFMLWindow::IsButtonPressed(EButtonType buttonType)
+{
+    sf::Vector2i mousePos = sf::Mouse::getPosition(*m_sfmlWindow);
+
+    bool hit;
+    switch (buttonType) {
+        case EButtonType::Start:
+            hit = m_startButton->TestHit(mousePos);
+            break;
+        case EButtonType::Stop:
+            hit = m_stopButton->TestHit(mousePos);
+            break;
+        case EButtonType::WinMessage:
+            hit = m_winMessageButton->TestHit(mousePos);
+            break;
+        default:
+            throw std::out_of_range("Can't handle provided buttonType");
+    }
+
+    return hit && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
 }

@@ -7,11 +7,8 @@
 class IWindow
 {
 public:
-    virtual void HandleEvents() = 0;
-
-    virtual bool IsClosed() = 0;
-    virtual bool IsButtonPressed(EButtonType buttonType) = 0;
-
+    virtual bool IsOpen() = 0;
+    virtual void Update() = 0;
     virtual void Render(const SlotMachine& SlotMachine) = 0;
 
     virtual ~IWindow() {};
