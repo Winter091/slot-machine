@@ -15,7 +15,7 @@ StartSpinState::StartSpinState(int numRows, milliseconds duration)
     m_rowDesiredSpeeds = GetRandFloats(numRows, cfg::MIN_ROW_SPEED, cfg::MAX_ROW_SPEED);
 }
 
-IState* StartSpinState::HandleButtonEvent(SlotMachine& /*slotMachine*/, const ButtonEvent& /*event*/)
+IState* StartSpinState::HandleEvent(SlotMachine& /*slotMachine*/, const IEvent& /*event*/)
 {
     return nullptr;
 }

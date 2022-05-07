@@ -2,7 +2,7 @@
 #define _IWINDOW_H_
 
 #include <Source/Slots/SlotMachine.hpp>
-#include <Source/Buttons/Events/EButtonType.hpp>
+#include <Source/Events/Implementations/ButtonEvent.hpp>
 
 class IWindow
 {

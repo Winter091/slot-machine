@@ -9,7 +9,7 @@ class IdleState final : public IState
 public:
     IdleState() = default;
 
-    virtual IState* HandleButtonEvent(SlotMachine& slotMachine, const ButtonEvent& input) override;
+    virtual IState* HandleEvent(SlotMachine& slotMachine, const IEvent& input) override;
     virtual IState* Update(SlotMachine& slotMachine, float dt) override;
     virtual inline EStateName GetName() const override { return EStateName::Idle; }
 

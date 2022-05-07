@@ -3,7 +3,7 @@
 
 #include <queue>
 
-#include <Source/Buttons/Events/ButtonEvent.hpp>
+#include <Source/Events/Implementations/ButtonEvent.hpp>
 #include <Source/Window/IWindow.hpp>
 
 class ButtonInput

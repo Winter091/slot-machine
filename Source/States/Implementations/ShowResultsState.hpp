@@ -11,7 +11,7 @@ class ShowResultsState final : public IState
 public:
     ShowResultsState(SlotMachine& slotMachine, std::chrono::milliseconds duration);
 
-    virtual IState* HandleButtonEvent(SlotMachine& slotMachine, const ButtonEvent& input) override;
+    virtual IState* HandleEvent(SlotMachine& slotMachine, const IEvent& input) override;
     virtual IState* Update(SlotMachine& slotMachine, float dt) override;
     virtual inline EStateName GetName() const override { return EStateName::ShowResults; }
 

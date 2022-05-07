@@ -3,7 +3,7 @@
 
 #include "SlotRow.hpp"
 #include <Source/States/IState.hpp>
-#include <Source/Buttons/Events/ButtonEvent.hpp>
+#include <Source/Events/IEvent.hpp>
 
 #include <vector>
 #include <memory>
@@ -16,7 +16,7 @@ public:
     SlotMachine(const SlotMachine&) = delete;
     SlotMachine& operator=(const SlotMachine&) = delete;
 
-    void HandleButtonEvent(const ButtonEvent& event);
+    void HandleEvent(const IEvent& event);
     void Update(float dt);
 
     std::vector<SlotRow>& GetRows() { return m_slotRows; }

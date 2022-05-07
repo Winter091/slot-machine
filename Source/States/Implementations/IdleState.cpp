@@ -2,20 +2,26 @@
 
 #include "StartSpinState.hpp"
 #include <Source/Config.hpp>
+#include <Source/Events/Implementations/ButtonEvent.hpp>
 
-IState* IdleState::HandleButtonEvent(SlotMachine& slotMachine, const ButtonEvent& event)
+IState* IdleState::HandleEvent(SlotMachine& slotMachine, const IEvent& event)
 {
-    if (event.GetAction() != EButtonAction::Press) {
+    if (event.GetEventType() != EEventType::Button) {
         return nullptr;
     }
 
-    using namespace std::chrono;
-    using namespace std::chrono_literals;
+    const ButtonEvent& buttonEvent = dynamic_cast<const ButtonEvent&>(event);
+    
+    if (buttonEvent.GetButtonAction() != EButtonAction::Press) {
+        return nullptr;
+    }
 
-    switch (event.GetType()) {
+    switch (buttonEvent.GetButtonType()) {
         case EButtonType::Start:
-            return new StartSpinState(slotMachine.GetRows().size(), 
-                milliseconds(cfg::START_SPIN_DURATION_MS));
+            return new StartSpinState(
+                slotMachine.GetRows().size(), 
+                std::chrono::milliseconds(cfg::START_SPIN_DURATION_MS)
+            );
         default:
             break;
     }

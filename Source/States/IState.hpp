@@ -1,7 +1,7 @@
 #ifndef _ISTATE_H_
 #define _ISTATE_H_
 
-#include <Source/Buttons/Events/ButtonEvent.hpp>
+#include <Source/Events/IEvent.hpp>
 #include <Source/States/EStateName.hpp>
 
 class SlotMachine;
@@ -13,7 +13,7 @@ public:
     IState(const IState&) = delete;
     IState& operator=(const IState&) = delete;
 
-    virtual IState* HandleButtonEvent(SlotMachine& slotMachine, const ButtonEvent& event) = 0;
+    virtual IState* HandleEvent(SlotMachine& slotMachine, const IEvent& event) = 0;
     virtual IState* Update(SlotMachine& slotMachine, float dt) = 0;
     virtual EStateName GetName() const = 0;
 

@@ -3,6 +3,7 @@
 #include <Source/Window/Implementations/SFML/SFMLWindow.hpp>
 #include <Source/Buttons/Input/ButtonInput.hpp>
 #include <Source/Config.hpp>
+#include <Source/Events/Implementations/ButtonEvent.hpp>
 
 #include <chrono>
 #include <iostream>
@@ -27,7 +28,7 @@ void Application::MainLoop()
         ButtonInput::HandleWindowEvents(m_window.get());
         ButtonEvent event;
         while (ButtonInput::GetNextEvent(event)) {
-            m_slotMachine->HandleButtonEvent(event);
+            m_slotMachine->HandleEvent(event);
         }
 
         m_slotMachine->Update(dt);
