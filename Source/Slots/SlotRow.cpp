@@ -37,6 +37,12 @@ int SlotRow::IndexFromPosition(float pos) const
     return static_cast<int>(pos / width);
 }
 
+ESlotType SlotRow::SlotFromPosition(float pos) const
+{
+    int index = IndexFromPosition(pos);
+    return m_slots[index].GetType();
+}
+
 float SlotRow::DistanceToSlotTop(float pos) const
 {
     float width = 1.0f / m_slots.size();

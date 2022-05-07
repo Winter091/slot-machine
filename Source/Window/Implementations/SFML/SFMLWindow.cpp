@@ -86,8 +86,8 @@ void SFMLWindow::Render(const SlotMachine& slotMachine)
 {
     m_sfmlWindow->clear(sf::Color::White);
 
+    SetWinLoseMessage(slotMachine);
     if (slotMachine.GetCurrentState() == EStateName::ShowResults) {
-        SetWinLoseMessage(slotMachine);
         m_sfmlWindow->draw(*m_winMessageButton);
         m_sfmlWindow->display();
         return;

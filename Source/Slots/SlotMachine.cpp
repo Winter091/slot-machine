@@ -61,7 +61,7 @@ void SlotMachine::RecalcWinStatus()
     bool hasValue = false;
     
     for (const auto& row : m_slotRows) {
-        ESlotType slot = static_cast<ESlotType>(row.IndexFromPosition(row.GetPosition()));
+        ESlotType slot = row.SlotFromPosition(row.GetPosition());
         
         if (!hasValue) {
             prevSlot = slot;

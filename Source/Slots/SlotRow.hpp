@@ -25,6 +25,7 @@ public:
     const std::vector<Slot>& GetSlots() const { return m_slots; }
 
     int IndexFromPosition(float pos) const;
+    ESlotType SlotFromPosition(float pos) const;
     float DistanceToSlotTop(float pos) const;
 
 private:
