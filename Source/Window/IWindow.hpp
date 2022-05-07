@@ -7,7 +7,7 @@
 class IWindow
 {
 public:
-    virtual void DispatchEvents() = 0;
+    virtual void HandleEvents() = 0;
 
     virtual bool IsClosed() = 0;
     virtual bool IsButtonPressed(EButtonType buttonType) = 0;

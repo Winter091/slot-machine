@@ -17,7 +17,7 @@ public:
     SFMLWindow& operator=(SFMLWindow&) = delete;
     virtual ~SFMLWindow() override {}
 
-    virtual void DispatchEvents() override;
+    virtual void HandleEvents() override;
 
     virtual bool IsClosed() override;
     virtual bool IsButtonPressed(EButtonType buttonType) override;
@@ -38,6 +38,7 @@ private:
     static sf::String s_loseMessage;
 
     void SetWinLoseMessage(const SlotMachine& slotMachine);
+    void HandleMouseButtonEvent(const sf::Event& event);
 };
 
 #endif

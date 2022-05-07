@@ -1,6 +1,7 @@
 #include "SFMLWindow.hpp"
 
 #include <Source/Config.hpp>
+#include <Source/Events/EventQueue.hpp>
 
 #include <iostream>
 
@@ -48,12 +49,19 @@ SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
     ));
 }
 
-void SFMLWindow::DispatchEvents()
+void SFMLWindow::HandleEvents()
 {
     sf::Event event;
     while (m_sfmlWindow->pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
-            m_sfmlWindow->close();
+        switch (event.type) {
+            case sf::Event::Closed:
+                m_sfmlWindow->close();
+                break;
+            case sf::Event::MouseButtonPressed:
+                HandleMouseButtonEvent(event);
+                break;
+            default:
+                break;
         }
     }
 }
@@ -120,4 +128,18 @@ void SFMLWindow::SetWinLoseMessage(const SlotMachine& slotMachine)
     }
 
     prevState = currState;
+}
+
+void SFMLWindow::HandleMouseButtonEvent(const sf::Event& event)
+{
+    if (event.mouseButton.button != sf::Mouse::Button::Left) {
+        return;
+    }
+
+    for (EButtonType buttonType : { EButtonType::Start, EButtonType::Stop, EButtonType::WinMessage }) {
+        if (IsButtonPressed(buttonType)) {
+            EventQueue::AddEvent(std::unique_ptr<IEvent>(new ButtonEvent(buttonType, EButtonAction::Press)));
+            return;
+        }
+    }
 }

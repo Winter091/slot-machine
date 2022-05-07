@@ -5,7 +5,7 @@ target_sources(
     main.cpp
 )
 
-add_subdirectory(Buttons)
+add_subdirectory(Events)
 add_subdirectory(Slots)
 add_subdirectory(States)
 add_subdirectory(Window)
