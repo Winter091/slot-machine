@@ -10,11 +10,10 @@ void ButtonInput::HandleWindowEvents(IWindow* window)
 {
     auto& instance = GetInstance();
 
-    if (window->IsButtonPressed(EButtonType::Start)) {
-        instance.m_buttonEvents.push(ButtonEvent(EButtonType::Start, EButtonAction::Press));
-    }
-    if (window->IsButtonPressed(EButtonType::Stop)) {
-        instance.m_buttonEvents.push(ButtonEvent(EButtonType::Stop, EButtonAction::Press));
+    for (EButtonType buttonType : { EButtonType::Start, EButtonType::Stop, EButtonType::WinMessage }) {
+        if (window->IsButtonPressed(buttonType)) {
+            instance.m_buttonEvents.push(ButtonEvent(buttonType, EButtonAction::Press));
+        }
     }
 }
 

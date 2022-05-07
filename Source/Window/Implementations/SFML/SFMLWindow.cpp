@@ -75,6 +75,9 @@ bool SFMLWindow::IsButtonPressed(EButtonType buttonType)
         case EButtonType::Stop:
             hit = m_stopButton->TestHit(mousePos);
             break;
+        case EButtonType::WinMessage:
+            hit = m_winMessageButton->TestHit(mousePos);
+            break;
         default:
             throw std::out_of_range("Can't handle provided buttonType");
     }

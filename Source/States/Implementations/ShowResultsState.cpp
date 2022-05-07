@@ -10,9 +10,16 @@ ShowResultsState::ShowResultsState(SlotMachine& slotMachine, milliseconds durati
     slotMachine.RecalcWinStatus();
 }
 
-IState* ShowResultsState::HandleButtonEvent(SlotMachine& /* slotMachine */, const ButtonEvent& /* event */)
+IState* ShowResultsState::HandleButtonEvent(SlotMachine& /* slotMachine */, const ButtonEvent& event)
 {
-    return nullptr;
+    if (event.GetAction() != EButtonAction::Press) {
+        return nullptr;
+    }
+
+    // Skip win status message
+    if (event.GetType() == EButtonType::WinMessage) {
+        return new IdleState();
+    }
 }
 
 IState* ShowResultsState::Update(SlotMachine& /*slotMachine*/, float /*dt*/)
