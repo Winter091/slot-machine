@@ -12,7 +12,7 @@ class StartSpinState final : public IState
 public:
     StartSpinState(int numRows, std::chrono::milliseconds duration);
 
-    virtual IState* HandleEvent(SlotMachine& slotMachine, const IEvent& input) override;
+    virtual IState* OnEvent(SlotMachine& slotMachine, const IEvent& input) override;
     virtual IState* Update(SlotMachine& slotMachine, float dt) override;
     virtual inline EStateName GetName() const override { return EStateName::StartSpin; }
 

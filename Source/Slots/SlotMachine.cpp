@@ -2,6 +2,8 @@
 
 #include "SlotRow.hpp"
 #include <Source/States/Implementations/IdleState.hpp>
+#include <Source/Events/EventQueue.hpp> 
+#include <Source/Events/Implementations/StateChangedEvent.hpp> 
 
 #include <cassert>
 #include <iostream>
@@ -26,13 +28,13 @@ SlotMachine* SlotMachine::NewRandom(uint32_t numRows, uint32_t numInRow)
     return new SlotMachine(rows);
 }
 
-void SlotMachine::HandleEvent(const IEvent& event)
+void SlotMachine::OnEvent(const IEvent& event)
 {
     assert(m_state && "State pointer is nullptr");
 
-    IState* newState = m_state->HandleEvent(*this, event);
+    IState* newState = m_state->OnEvent(*this, event);
     if (newState) {
-        m_state.reset(newState);
+        SetState(newState);
     }
 }
 
@@ -42,7 +44,7 @@ void SlotMachine::Update(float dt)
 
     IState* newState = m_state->Update(*this, dt);
     if (newState) {
-        m_state.reset(newState);
+        SetState(newState);
     }
 }
 
@@ -76,4 +78,15 @@ void SlotMachine::RecalcWinStatus()
 
         prevSlot = slot;
     }
+}
+
+void SlotMachine::SetState(IState* newState)
+{
+    assert(m_state && newState);
+    
+    EventQueue::AddEvent(std::unique_ptr<IEvent>(
+        new StateChangedEvent(m_state->GetName(), newState->GetName())
+    ));
+
+    m_state.reset(newState);
 }

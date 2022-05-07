@@ -18,12 +18,15 @@ public:
 
     void SetText(const sf::String& text);
 
+    inline void SetIsActive(bool value) { m_isActive = value; }
+
     bool TestHit(sf::Vector2i point) const;
 
 private:
     sf::RectangleShape m_rect;
     sf::Font m_textFont;
     sf::Text m_text;
+    bool m_isActive;
 };
 
 #endif

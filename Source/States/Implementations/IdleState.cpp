@@ -4,7 +4,7 @@
 #include <Source/Config.hpp>
 #include <Source/Events/Implementations/ButtonEvent.hpp>
 
-IState* IdleState::HandleEvent(SlotMachine& slotMachine, const IEvent& event)
+IState* IdleState::OnEvent(SlotMachine& slotMachine, const IEvent& event)
 {
     if (event.GetEventType() != EEventType::Button) {
         return nullptr;

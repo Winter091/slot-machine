@@ -6,6 +6,7 @@
 enum class EEventType : uint32_t 
 {
     Button,
+    StateChanged,
 };
 
 #endif

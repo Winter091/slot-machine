@@ -5,6 +5,7 @@
 #include "SFMLButton.hpp"
 #include "SFMLSlotsView.hpp"
 #include <SFML/Graphics.hpp>
+#include <Source/Events/Implementations/ButtonEvent.hpp>
 
 #include <cstddef>
 #include <memory>
@@ -19,6 +20,7 @@ public:
 
     virtual bool IsOpen() override;
     virtual void Update() override;
+    virtual void OnEvent(const IEvent& event) override;
     virtual void Render(const SlotMachine& slotMachine) override;
 
 private:
@@ -34,8 +36,10 @@ private:
     static sf::String s_winMessage;
     static sf::String s_loseMessage;
 
+    EButtonType m_currentActiveButton;
+
     void SetWinLoseMessage(const SlotMachine& slotMachine);
-    void HandleMouseButtonEvent(const sf::Event& event);
+    void DispatchButtonPressEvent(const sf::Event& event);
     bool IsButtonPressed(EButtonType buttonType);
 };
 

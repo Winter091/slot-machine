@@ -13,7 +13,7 @@ public:
     IState(const IState&) = delete;
     IState& operator=(const IState&) = delete;
 
-    virtual IState* HandleEvent(SlotMachine& slotMachine, const IEvent& event) = 0;
+    virtual IState* OnEvent(SlotMachine& slotMachine, const IEvent& event) = 0;
     virtual IState* Update(SlotMachine& slotMachine, float dt) = 0;
     virtual EStateName GetName() const = 0;
 

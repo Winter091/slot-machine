@@ -11,7 +11,7 @@ class SpinState final : public IState
 public:
     SpinState(std::chrono::milliseconds maxDuration);
 
-    virtual IState* HandleEvent(SlotMachine& slotMachine, const IEvent& input) override;
+    virtual IState* OnEvent(SlotMachine& slotMachine, const IEvent& input) override;
     virtual IState* Update(SlotMachine& slotMachine, float dt) override;
     virtual inline EStateName GetName() const override { return EStateName::Spin; }
 

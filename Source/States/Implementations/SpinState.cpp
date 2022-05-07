@@ -11,7 +11,7 @@ SpinState::SpinState(milliseconds maxDuration)
     m_maxEndTime = high_resolution_clock::now() + maxDuration;
 }
 
-IState* SpinState::HandleEvent(SlotMachine& slotMachine, const IEvent& event)
+IState* SpinState::OnEvent(SlotMachine& slotMachine, const IEvent& event)
 {
     if (event.GetEventType() != EEventType::Button) {
         return nullptr;

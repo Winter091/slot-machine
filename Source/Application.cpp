@@ -25,7 +25,8 @@ void Application::MainLoop()
 
         m_window->Update();
         while (std::unique_ptr<IEvent> event = EventQueue::GetNextEvent()) {
-            m_slotMachine->HandleEvent(*event);
+            m_slotMachine->OnEvent(*event);
+            m_window->OnEvent(*event);
         }
 
         m_slotMachine->Update(dt);

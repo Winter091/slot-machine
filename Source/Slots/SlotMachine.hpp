@@ -16,7 +16,7 @@ public:
     SlotMachine(const SlotMachine&) = delete;
     SlotMachine& operator=(const SlotMachine&) = delete;
 
-    void HandleEvent(const IEvent& event);
+    void OnEvent(const IEvent& event);
     void Update(float dt);
 
     std::vector<SlotRow>& GetRows() { return m_slotRows; }
@@ -32,6 +32,8 @@ private:
     std::vector<SlotRow> m_slotRows;
     std::unique_ptr<IState> m_state;
     bool m_hasWon;
+
+    void SetState(IState* newState);
 };
 
 #endif

@@ -12,7 +12,7 @@ ShowResultsState::ShowResultsState(SlotMachine& slotMachine, milliseconds durati
     slotMachine.RecalcWinStatus();
 }
 
-IState* ShowResultsState::HandleEvent(SlotMachine& /* slotMachine */, const IEvent& event)
+IState* ShowResultsState::OnEvent(SlotMachine& /* slotMachine */, const IEvent& event)
 {
     if (event.GetEventType() != EEventType::Button) {
         return nullptr;

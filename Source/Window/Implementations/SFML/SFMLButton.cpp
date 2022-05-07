@@ -4,6 +4,7 @@
 #include <cstdlib>
 
 SFMLButton::SFMLButton(const sf::FloatRect& rect, const sf::String& text)
+    : m_isActive(true)
 {
     m_rect = sf::RectangleShape(sf::Vector2f(rect.width, rect.height));
     m_rect.setPosition(sf::Vector2f(rect.left, rect.top));
@@ -49,6 +50,10 @@ void SFMLButton::SetText(const sf::String& text)
 
 bool SFMLButton::TestHit(sf::Vector2i point) const
 {
+    if (!m_isActive) {
+        return false;
+    }
+    
     const auto& rect = m_rect.getPosition();
     const auto& size = m_rect.getSize();
 
