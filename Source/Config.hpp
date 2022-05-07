@@ -33,6 +33,8 @@ extern int SHOW_RESULTS_DURATION_MS;
 extern float MIN_ROW_SPEED;
 extern float MAX_ROW_SPEED;
 
+extern const char* WIN_MESSAGE;
+extern const char* LOSE_MESSAGE;
 }
 
 #endif

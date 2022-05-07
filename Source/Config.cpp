@@ -32,4 +32,7 @@ int SHOW_RESULTS_DURATION_MS = 3000;
 float MIN_ROW_SPEED = 0.0002f;
 float MAX_ROW_SPEED = 0.0005f;
 
+const char* WIN_MESSAGE = "You won!";
+const char* LOSE_MESSAGE = "You lost!";
+
 }

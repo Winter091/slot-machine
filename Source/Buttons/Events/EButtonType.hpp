@@ -7,6 +7,7 @@ enum class EButtonType : uint32_t
 {
     Start = 0,
     Stop,
+    WinMessage,
 };
 
 #endif

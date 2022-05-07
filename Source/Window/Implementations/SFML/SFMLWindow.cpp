@@ -4,6 +4,11 @@
 
 #include <iostream>
 
+
+sf::String SFMLWindow::s_winMessage = cfg::WIN_MESSAGE;
+sf::String SFMLWindow::s_loseMessage = cfg::LOSE_MESSAGE;
+
+
 SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
     : m_width(width)
     , m_height(height)
@@ -28,24 +33,14 @@ SFMLWindow::SFMLWindow(uint32_t width, uint32_t height, const char* title)
         "Stop"
     );
 
-    // Use transparent buttons because they can draw text
-    m_winTextButton = std::make_unique<SFMLButton>(
+    m_winMessageButton = std::make_unique<SFMLButton>(
         sf::FloatRect(
             0, 0, cfg::WINDOW_WIDTH, cfg::WINDOW_HEIGHT
         ),
-        "You won!"
+        ""
     );
-    m_winTextButton->setFillColor(sf::Color(0, 0, 0, 0));
-    m_winTextButton->setTextColor(sf::Color(0, 0, 0, 255));
-
-    m_loseTextButton = std::make_unique<SFMLButton>(
-        sf::FloatRect(
-            0, 0, cfg::WINDOW_WIDTH, cfg::WINDOW_HEIGHT
-        ),
-        "You lost!"
-    );
-    m_loseTextButton->setFillColor(sf::Color(0, 0, 0, 0));
-    m_loseTextButton->setTextColor(sf::Color(0, 0, 0, 255));
+    m_winMessageButton->SetFillColor(sf::Color(0, 0, 0, 0));
+    m_winMessageButton->SetTextColor(sf::Color(0, 0, 0, 255));
 
     m_slotsView = std::make_unique<SFMLSlotsView>(sf::FloatRect(
         cfg::SLOTSVIEW_X, cfg::SLOTSVIEW_Y, 
@@ -92,15 +87,16 @@ void SFMLWindow::Render(const SlotMachine& slotMachine)
     m_sfmlWindow->clear(sf::Color::White);
 
     if (slotMachine.GetCurrentState() == EStateName::ShowResults) {
-        m_sfmlWindow->draw(slotMachine.GetHasWon() ? *m_winTextButton : *m_loseTextButton);
+        SetWinLoseMessage(slotMachine);
+        m_sfmlWindow->draw(*m_winMessageButton);
         m_sfmlWindow->display();
         return;
     }
 
     const auto& pressColor = sf::Color(178, 13, 192);
     const auto& usualColor = sf::Color(36, 130, 234);
-    m_startButton->setFillColor(IsButtonPressed(EButtonType::Start) ? pressColor : usualColor);
-    m_stopButton->setFillColor(IsButtonPressed(EButtonType::Stop) ? pressColor : usualColor);
+    m_startButton->SetFillColor(IsButtonPressed(EButtonType::Start) ? pressColor : usualColor);
+    m_stopButton->SetFillColor(IsButtonPressed(EButtonType::Stop) ? pressColor : usualColor);
 
     m_sfmlWindow->draw(*m_startButton);
     m_sfmlWindow->draw(*m_stopButton);
@@ -108,4 +104,17 @@ void SFMLWindow::Render(const SlotMachine& slotMachine)
     m_slotsView->Draw(*m_sfmlWindow, slotMachine.GetRows());
 
     m_sfmlWindow->display();
+}
+
+void SFMLWindow::SetWinLoseMessage(const SlotMachine& slotMachine)
+{
+    static EStateName prevState = EStateName::Idle;
+
+    // Change text only once per state transition
+    EStateName currState = slotMachine.GetCurrentState();
+    if (currState == EStateName::ShowResults && currState != prevState) {
+        m_winMessageButton->SetText(slotMachine.GetHasWon() ? s_winMessage : s_loseMessage);
+    }
+
+    prevState = currState;
 }

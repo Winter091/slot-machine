@@ -31,9 +31,13 @@ private:
 
     std::unique_ptr<SFMLButton> m_startButton;
     std::unique_ptr<SFMLButton> m_stopButton;
-    std::unique_ptr<SFMLButton> m_winTextButton;
-    std::unique_ptr<SFMLButton> m_loseTextButton;
+    std::unique_ptr<SFMLButton> m_winMessageButton;
     std::unique_ptr<SFMLSlotsView> m_slotsView;
+
+    static sf::String s_winMessage;
+    static sf::String s_loseMessage;
+
+    void SetWinLoseMessage(const SlotMachine& slotMachine);
 };
 
 #endif
