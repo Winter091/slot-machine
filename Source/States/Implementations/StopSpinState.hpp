@@ -23,9 +23,14 @@ private:
     std::vector<float> m_startSpeeds;
     std::vector<float> m_stopDurationsMs;
     std::vector<float> m_startPositions;
-    std::vector<float> m_distToTravel;
+    std::vector<float> m_distsToTravel;
     std::vector<bool> m_alreadyStopped;
     int m_numRunning;
+
+    void FillPerfectStopPosForRow(const SlotRow& row, std::chrono::milliseconds minDuration);
+    void UpdateRow(SlotRow& row, std::size_t index, float durationMs);
+    void UpdateRowSpeedAndPos(SlotRow& row, std::size_t index, float durationMs);
+    void StopRow(SlotRow& row, std::size_t index);
 };
 
 #endif

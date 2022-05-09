@@ -5,43 +5,43 @@
 #include <cmath>
 #include <iostream>
 
+using namespace std::chrono;
 using namespace std::chrono_literals;
 
-StopSpinState::StopSpinState(const std::vector<SlotRow>& rows, std::chrono::milliseconds minDuration)
-    : m_startSpeeds(rows.size())
-    , m_stopDurationsMs(rows.size())
-    , m_startPositions(rows.size())
-    , m_distToTravel(rows.size())
-    , m_alreadyStopped(rows.size())
+StopSpinState::StopSpinState(const std::vector<SlotRow>& rows, milliseconds minDuration)
+    : m_alreadyStopped(rows.size(), false)
     , m_numRunning(rows.size())
 {
-    m_startTime = std::chrono::high_resolution_clock::now();
+    m_startSpeeds.reserve(rows.size());
+    m_stopDurationsMs.reserve(rows.size());
+    m_startPositions.reserve(rows.size());
+    m_distsToTravel.reserve(rows.size());
+    
+    m_startTime = high_resolution_clock::now();
 
-    // Calculate distance to travel to stop perfectly at some
-    // future's slot's center and time required to do it 
-    for (std::size_t i = 0; i < rows.size(); i++) {
-        const auto& row = rows[i];
+    for (const SlotRow& row : rows) {
+        FillPerfectStopPosForRow(row, minDuration);
+    }
+}
 
-        float dist = 0.5f * row.GetSpeed() * minDuration.count();
-        float posNow = row.GetPosition();
-        float posAtEnd = posNow + dist;
+void StopSpinState::FillPerfectStopPosForRow(const SlotRow& row, milliseconds minDuration)
+{
+    float dist = 0.5f * row.GetSpeed() * minDuration.count();
+    float posAtEnd = row.GetPosition() + dist;
 
-        float slotSize = 1.0f / row.GetSlots().size();
-        float distToTop = row.DistanceToSlotTop(posAtEnd);
-        float distToNextCenter = distToTop - slotSize / 2.0f;
-        if (distToNextCenter < 0.0f) {
-            distToNextCenter += slotSize;
-        }
-
-        float distToTravel = dist + distToNextCenter;
-        m_startPositions[i] = posNow;
-        m_distToTravel[i] = distToTravel;
-        m_stopDurationsMs[i] = 2.0f * distToTravel / row.GetSpeed();
+    float slotSize = 1.0f / row.GetSlots().size();
+    float distToTop = row.DistanceToSlotTop(posAtEnd);
+    float distToNextCenter = distToTop - slotSize / 2.0f;
+    if (distToNextCenter < 0.0f) {
+        distToNextCenter += slotSize;
     }
 
-    for (std::size_t i = 0; i < rows.size(); i++) {
-        m_startSpeeds[i] = rows[i].GetSpeed();
-    }
+    float distToTravel = dist + distToNextCenter;
+
+    m_startSpeeds.push_back(row.GetSpeed());
+    m_startPositions.push_back(row.GetPosition());
+    m_stopDurationsMs.push_back(2.0f * distToTravel / row.GetSpeed());
+    m_distsToTravel.push_back(distToTravel);
 }
 
 IState* StopSpinState::OnEvent(SlotMachine& /*slotMachine*/, const IEvent& /*event*/)
@@ -49,40 +49,14 @@ IState* StopSpinState::OnEvent(SlotMachine& /*slotMachine*/, const IEvent& /*eve
     return nullptr;
 }
 
-IState* StopSpinState::Update(SlotMachine& slotMachine, float /* dt */)
+IState* StopSpinState::Update(SlotMachine& slotMachine, float /*dt*/)
 {
-    using namespace std::chrono;
-
     auto& rows = slotMachine.GetRows();
-
     const auto currTime = high_resolution_clock::now();
+    float durationMs = duration_cast<microseconds>(currTime - m_startTime).count() / 1000.0f;
     
     for (std::size_t i = 0; i < rows.size(); i++) {
-        if (m_alreadyStopped[i]) {
-            continue;
-        }
-
-        auto& row = rows[i];
-
-        float timeMs = duration_cast<microseconds>(currTime - m_startTime).count() / 1000.0f;
-        float part = timeMs / m_stopDurationsMs[i];
-
-        // Setting speed is not required (position is being set directly),
-        // but it's good to do nontheless 
-        if (part < 1.0f) {
-            const float accel = -m_startSpeeds[i] / m_stopDurationsMs[i];
-            float pos = m_startPositions[i] 
-                        + m_startSpeeds[i] * timeMs 
-                        + accel * timeMs * timeMs / 2;
-            
-            row.SetSpeed(m_startSpeeds[i] * (1.0f - part));
-            row.SetPosition(pos);
-        } else {
-            m_alreadyStopped[i] = true;
-            --m_numRunning;
-            row.SetSpeed(0.0f);
-            row.SetPosition(m_startPositions[i] + m_distToTravel[i]);
-        }
+        UpdateRow(rows[i], i, durationMs);
     }
 
     if (m_numRunning == 0) {
@@ -90,4 +64,40 @@ IState* StopSpinState::Update(SlotMachine& slotMachine, float /* dt */)
     }
 
     return nullptr;
+}
+
+void StopSpinState::UpdateRow(SlotRow& row, std::size_t index, float durationMs)
+{
+    if (m_alreadyStopped[index]) {
+        return;
+    }
+
+    if (durationMs < m_stopDurationsMs[index]) {
+        UpdateRowSpeedAndPos(row, index, durationMs);
+    } else {
+        StopRow(row, index);
+    }
+}
+
+void StopSpinState::UpdateRowSpeedAndPos(SlotRow& row, std::size_t index, float timeMs)
+{
+    float accel = -m_startSpeeds[index] / m_stopDurationsMs[index];
+    float pos = m_startPositions[index] 
+                + m_startSpeeds[index] * timeMs 
+                + accel * timeMs * timeMs / 2;
+
+    float speedMult = 1.0f - timeMs / m_stopDurationsMs[index];
+    float speed = m_startSpeeds[index] * speedMult;
+    
+    row.SetSpeed(speed);
+    row.SetPosition(pos);
+}
+
+void StopSpinState::StopRow(SlotRow& row, std::size_t index)
+{
+    row.SetSpeed(0.0f);
+    row.SetPosition(m_startPositions[index] + m_distsToTravel[index]);
+
+    m_alreadyStopped[index] = true;
+    --m_numRunning;
 }
